@@ -1,0 +1,8 @@
+{
+  "peasant":   { "cost": 20,  "growth": 12 },
+  "archer":    { "cost": 150, "growth": 8 },
+  "pikeman":   { "cost": 200, "growth": 5 },
+  "swordsman": { "cost": 250, "growth": 4 },
+  "cavalry":   { "cost": 300, "growth": 3 },
+  "paladin":   { "cost": 600, "growth": 2 }
+}

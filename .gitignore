@@ -1,0 +1,29 @@
+# Godot import cache (regenerated headless: --import)
+.godot/
+*.import
+*.uid
+
+# macOS
+.DS_Store
+
+# Extracted game data, written by tools/extract.gd from the player's own copy
+# of HOMM1, plus the original scenario files they supply alongside it.
+/assets
+
+# Scenario JSON, written by tools/map_convert.gd from those same .map and .cmp
+# files. Derived from copyrighted data. The hand-authored scenario below is
+# source, not output.
+/data/maps/*.json
+!/data/maps/skirmish01.json
+
+# The player's own copy of the game and anything derived from it.
+external_resources/*
+!external_resources/README.md
+!external_resources/.gdignore
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Build output
+/build/

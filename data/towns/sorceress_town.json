@@ -1,0 +1,17 @@
+{
+  "name": "Woodhaven",
+  "background": "townbkg1.png",
+  "crest_class": 2,
+  "castle_dir": "frstcast",
+  "tent_dir": "frsttent",
+  "layout": [
+    { "dir": "frstcast" },
+    { "dir": "frst_d4", "unit": "unicorn" },
+    { "dir": "frst_d3", "unit": "druid" },
+    { "dir": "frst_d2", "unit": "elf" },
+    { "dir": "frst_d5", "unit": "phoenix" },
+    { "dir": "frst_d1", "unit": "dwarf" },
+    { "dir": "frst_d0", "unit": "sprite" },
+    { "dir": "frsttent" }
+  ]
+}

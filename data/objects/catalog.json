@@ -1,0 +1,1543 @@
+{
+ "_comment": "Adventure object catalog (spec Section 5). handler -> src/adventure/objects/handlers/<id>.gd; action_offset = action_tile - tile; footprint = blocked tiles relative to tile; params = defaults merged under authored spec params.",
+ "resource": {
+  "handler": "pickup",
+  "action_offset": [
+   0,
+   0
+  ],
+  "footprint": [],
+  "minimap": "pickup",
+  "params": {}
+ },
+ "mine": {
+  "handler": "mine",
+  "action_offset": [
+   0,
+   1
+  ],
+  "entry": "building",
+  "tall": true,
+  "footprint": [
+   [
+    0,
+    0
+   ],
+   [
+    1,
+    0
+   ],
+   [
+    1,
+    1
+   ]
+  ],
+  "minimap": "mine",
+  "_comment_yield": "Daily yield by resource when a scenario authors none (KB objects.md, Mines; heroes.exe data 0x1fb04 agrees).",
+  "params": {
+   "yield": {
+    "wood": 2,
+    "mercury": 1,
+    "ore": 2,
+    "sulfur": 1,
+    "crystal": 1,
+    "gems": 1,
+    "gold": 1000
+   }
+  }
+ },
+ "dwelling": {
+  "handler": "dwelling",
+  "action_offset": [
+   0,
+   1
+  ],
+  "entry": "building",
+  "tall": true,
+  "footprint": [
+   [
+    0,
+    0
+   ]
+  ],
+  "minimap": "building",
+  "params": {}
+ },
+ "stack": {
+  "handler": "stack",
+  "action_offset": [
+   0,
+   0
+  ],
+  "footprint": [],
+  "minimap": "enemy",
+  "params": {}
+ },
+ "shrine": {
+  "handler": "teach_spell",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "building",
+  "footprint": [],
+  "minimap": "building",
+  "params": {}
+ },
+ "town": {
+  "handler": "town",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "building",
+  "entry_tiles": [
+   [
+    -2,
+    0
+   ],
+   [
+    -1,
+    0
+   ],
+   [
+    1,
+    0
+   ]
+  ],
+  "tall": false,
+  "footprint": [
+   [
+    -2,
+    -1
+   ],
+   [
+    -1,
+    -1
+   ],
+   [
+    0,
+    -1
+   ],
+   [
+    1,
+    -1
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "minimap": "town",
+  "params": {
+   "name": ""
+  }
+ },
+ "sign": {
+  "handler": "sign",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "all",
+  "_comment_entry": "The DOS original opens it when a hero steps onto it from above as well as from below (probed 2026-09-23 on a copied native one), so it is not a building-style entrance.",
+  "footprint": [],
+  "minimap": "pickup",
+  "params": {
+   "text": ""
+  },
+  "art": {
+   "dir": "obj32-01",
+   "sprite": 10
+  }
+ },
+ "artifact": {
+  "handler": "pickup",
+  "action_offset": [
+   0,
+   0
+  ],
+  "stop_before": true,
+  "footprint": [],
+  "minimap": "pickup",
+  "params": {},
+  "art": {
+   "dir": "obj32-07",
+   "sprite": 3
+  }
+ },
+ "chest": {
+  "handler": "pickup",
+  "action_offset": [
+   0,
+   0
+  ],
+  "footprint": [],
+  "minimap": "pickup",
+  "params": {
+   "tiers": [
+    [
+     1000,
+     500
+    ],
+    [
+     1500,
+     1000
+    ],
+    [
+     2000,
+     1500
+    ]
+   ]
+  },
+  "art": {
+   "dir": "obj32-07",
+   "sprite": 3
+  }
+ },
+ "campfire": {
+  "handler": "pickup",
+  "action_offset": [
+   0,
+   0
+  ],
+  "footprint": [],
+  "minimap": "pickup",
+  "params": {
+   "tiers": [
+    [
+     400,
+     4
+    ],
+    [
+     500,
+     5
+    ],
+    [
+     600,
+     6
+    ]
+   ],
+   "resources": [
+    "wood",
+    "ore",
+    "gems",
+    "crystal",
+    "sulfur",
+    "mercury"
+   ]
+  },
+  "art": {
+   "dir": "obj32-02",
+   "sprite": 15,
+   "anim": {
+    "frames": [
+     16,
+     17,
+     18,
+     19,
+     20,
+     21
+    ],
+    "fps": 6.0
+   }
+  }
+ },
+ "_comment_wagon_camp": "Reference-correct paid dwelling: Wagons hire Rogues for 50 gold each, begin with 30-50, and gain 3-6 on the first day of each week. Unlike a pickup, the camp is repeatable and its remaining stock persists. ART: the native object is a 3x2 obj32-07 composite centered on the bottom horse-team entrance: top 39/40/41, bottom 37/56/38. Frame 56 is the horse-team base and 57-62 are its six animation overlays. Native blocking marks the bottom wagon bed/cabin and the top center/right, while the bottom-center horses remain walkable; the catalog footprint mirrors that for hand-authored maps.",
+ "wagon_camp": {
+  "handler": "dwelling",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "building",
+  "tall": true,
+  "footprint": [
+   [
+    -1,
+    0
+   ],
+   [
+    1,
+    0
+   ],
+   [
+    0,
+    -1
+   ],
+   [
+    1,
+    -1
+   ]
+  ],
+  "minimap": "building",
+  "params": {
+   "unit": "rogue",
+   "cost": 50,
+   "initial_min": 30,
+   "initial_max": 50,
+   "weekly_min": 3,
+   "weekly_max": 6
+  },
+  "art": {
+   "dir": "obj32-07",
+   "layers": [
+    {
+     "tile": [
+      -1,
+      -1
+     ],
+     "ids": [
+      39
+     ]
+    },
+    {
+     "tile": [
+      0,
+      -1
+     ],
+     "ids": [
+      40
+     ]
+    },
+    {
+     "tile": [
+      1,
+      -1
+     ],
+     "ids": [
+      41
+     ]
+    },
+    {
+     "tile": [
+      -1,
+      0
+     ],
+     "ids": [
+      37
+     ]
+    },
+    {
+     "tile": [
+      0,
+      0
+     ],
+     "ids": [
+      56
+     ],
+     "anim_groups": [
+      {
+       "frames": [
+        57,
+        58,
+        59,
+        60,
+        61,
+        62
+       ],
+       "fps": 6.0
+      }
+     ]
+    },
+    {
+     "tile": [
+      1,
+      0
+     ],
+     "ids": [
+      38
+     ]
+    }
+   ]
+  }
+ },
+ "_comment_desert_tent": "Reference-correct paid dwelling: Desert Tents hire Nomads for 200 gold each, start with 10-20, and gain 1-3 weekly. Repeatable, persistent stock. Native B8=167 is a 3x2 obj32-05 composite (top: 34/21/22, bottom: 18/19/20) with center entrance at 19.",
+ "desert_tent": {
+  "handler": "dwelling",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "building",
+  "tall": true,
+  "footprint": [
+   [
+    -1,
+    0
+   ],
+   [
+    1,
+    0
+   ],
+   [
+    0,
+    -1
+   ],
+   [
+    -1,
+    -1
+   ],
+   [
+    1,
+    -1
+   ]
+  ],
+  "minimap": "building",
+  "params": {
+   "unit": "nomad",
+   "cost": 200,
+   "initial_min": 10,
+   "initial_max": 20,
+   "weekly_min": 1,
+   "weekly_max": 3,
+   "title": "Tents",
+   "offer_text": "A group of tattered tents,\nbillowing in the sandy wind,\nbeckons you.  Do you wish to\nhave any nomads join you\nduring your travels?",
+   "empty_text": "A group of tattered tents,\nbillowing in the sandy wind,\nbeckons you.  The tents are\nunoccupied.  Perhaps more\nnomads will be here later."
+  },
+  "art": {
+   "dir": "obj32-05",
+   "layers": [
+    {
+     "tile": [
+      -1,
+      -1
+     ],
+     "ids": [
+      34
+     ]
+    },
+    {
+     "tile": [
+      0,
+      -1
+     ],
+     "ids": [
+      21
+     ]
+    },
+    {
+     "tile": [
+      1,
+      -1
+     ],
+     "ids": [
+      22
+     ]
+    },
+    {
+     "tile": [
+      -1,
+      0
+     ],
+     "ids": [
+      18
+     ]
+    },
+    {
+     "tile": [
+      0,
+      0
+     ],
+     "ids": [
+      19
+     ]
+    },
+    {
+     "tile": [
+      1,
+      0
+     ],
+     "ids": [
+      20
+     ]
+    }
+   ]
+  }
+ },
+ "nomad_tent": {
+  "handler": "dwelling",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "building",
+  "tall": true,
+  "footprint": [
+   [
+    -1,
+    0
+   ],
+   [
+    1,
+    0
+   ],
+   [
+    0,
+    -1
+   ],
+   [
+    -1,
+    -1
+   ],
+   [
+    1,
+    -1
+   ]
+  ],
+  "minimap": "building",
+  "params": {
+   "unit": "nomad",
+   "cost": 200,
+   "initial_min": 10,
+   "initial_max": 20,
+   "weekly_min": 1,
+   "weekly_max": 3,
+   "title": "Tents",
+   "offer_text": "A group of tattered tents,\nbillowing in the sandy wind,\nbeckons you.  Do you wish to\nhave any nomads join you\nduring your travels?",
+   "empty_text": "A group of tattered tents,\nbillowing in the sandy wind,\nbeckons you.  The tents are\nunoccupied.  Perhaps more\nnomads will be here later."
+  },
+  "art": {
+   "dir": "obj32-05",
+   "layers": [
+    {
+     "tile": [
+      -1,
+      -1
+     ],
+     "ids": [
+      34
+     ]
+    },
+    {
+     "tile": [
+      0,
+      -1
+     ],
+     "ids": [
+      21
+     ]
+    },
+    {
+     "tile": [
+      1,
+      -1
+     ],
+     "ids": [
+      22
+     ]
+    },
+    {
+     "tile": [
+      -1,
+      0
+     ],
+     "ids": [
+      18
+     ]
+    },
+    {
+     "tile": [
+      0,
+      0
+     ],
+     "ids": [
+      19
+     ]
+    },
+    {
+     "tile": [
+      1,
+      0
+     ],
+     "ids": [
+      20
+     ]
+    }
+   ]
+  }
+ },
+ "_comment_ancient_lamp": "Reference-correct paid dwelling: Ancient Lamp / Genie Lamp starts with 2-5 Genies at 650 gold + 1 gems each, no weekly growth (finite pool), and disappears once all genies are hired. Native B8=139 is obj32-07 sprite 4.",
+ "ancient_lamp": {
+  "handler": "dwelling",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "all",
+  "_comment_entry": "The DOS original opens it when a hero steps onto it from above as well as from below (probed 2026-09-23 on a copied native one), so it is not a building-style entrance.",
+  "footprint": [],
+  "minimap": "pickup",
+  "params": {
+   "unit": "genie",
+   "cost": 650,
+   "cost_resources": {
+    "gold": 650,
+    "gems": 1
+   },
+   "initial_min": 2,
+   "initial_max": 5,
+   "weekly": 0,
+   "weekly_min": 0,
+   "weekly_max": 0,
+   "disappears_when_empty": true,
+   "title": "Genie Lamp",
+   "offer_text": "You stumble upon a dented and\ntarnished lamp lodged deep in\nthe earth. Do you wish to\nrub the lamp?"
+  },
+  "art": {
+   "dir": "obj32-07",
+   "sprite": 4
+  }
+ },
+ "genie_lamp": {
+  "handler": "dwelling",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "all",
+  "_comment_entry": "The DOS original opens it when a hero steps onto it from above as well as from below (probed 2026-09-23 on a copied native one), so it is not a building-style entrance.",
+  "footprint": [],
+  "minimap": "pickup",
+  "params": {
+   "unit": "genie",
+   "cost": 650,
+   "cost_resources": {
+    "gold": 650,
+    "gems": 1
+   },
+   "initial_min": 2,
+   "initial_max": 5,
+   "weekly": 0,
+   "weekly_min": 0,
+   "weekly_max": 0,
+   "disappears_when_empty": true,
+   "title": "Genie Lamp",
+   "offer_text": "You stumble upon a dented and\ntarnished lamp lodged deep in\nthe earth. Do you wish to\nrub the lamp?"
+  },
+  "art": {
+   "dir": "obj32-07",
+   "sprite": 4
+  }
+ },
+ "_comment_t2_boosters": "T2 once-per-hero / per-battle stat boosters (data/knowledge_base/adventure-object-catalog.md rows Gazebo/Fountain/Faerie Ring/Oasis/Statue). handler=stat_boost reads params {stat, amount, once}. once='per_hero' (Gazebo) is a TRUE permanent one-time-per-hero grant. once='per_battle' (Fountain/Faerie Ring/Oasis/Statue) is the note's real 'resets after the hero's next battle' semantics, but src/battle/ consumes neither luck nor morale today (no battle-end hook exists) -- so per_battle boosters are ALSO gated permanently by visited_by for now, same as per_hero, pending a battle-system task that wires the real reset. Either way visited_by (base MapObject) gates re-collection per hero, NOT obj.consumed -- boosters stay on the map. Art ids re-verified via labeled contact-sheets of assets/art/obj32-NN/ (the note's hints for these five were all UNVERIFIED placeholders and several were wrong).",
+ "gazebo": {
+  "handler": "stat_boost",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "building",
+  "footprint": [],
+  "minimap": "pickup",
+  "params": {
+   "stat": "exp",
+   "amount": 1000,
+   "once": "per_hero"
+  },
+  "art": {
+   "dir": "obj32-01",
+   "sprite": 11
+  }
+ },
+ "fountain": {
+  "handler": "stat_boost",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "all",
+  "_comment_entry": "The DOS original opens it when a hero steps onto it from above as well as from below (probed 2026-09-23 on a copied native one), so it is not a building-style entrance.",
+  "stop_before": true,
+  "footprint": [],
+  "minimap": "pickup",
+  "params": {
+   "stat": "luck",
+   "amount": 1,
+   "once": "per_battle"
+  },
+  "art": {
+   "dir": "obj32-07",
+   "sprite": 49,
+   "anim": {
+    "frames": [
+     50,
+     51,
+     52,
+     53,
+     54,
+     55
+    ],
+    "fps": 7.8
+   }
+  }
+ },
+ "faerie_ring": {
+  "handler": "stat_boost",
+  "action_offset": [
+   0,
+   0
+  ],
+  "action_offsets": [
+   [
+    -1,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "entry": "horizontal",
+  "footprint": [
+   [
+    -1,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "minimap": "pickup",
+  "params": {
+   "stat": "luck",
+   "amount": 1,
+   "once": "per_battle"
+  },
+  "art": {
+   "dir": "obj32-01",
+   "layers": [
+    {
+     "tile": [
+      -1,
+      0
+     ],
+     "ids": [
+      122
+     ]
+    },
+    {
+     "tile": [
+      0,
+      0
+     ],
+     "ids": [
+      123
+     ]
+    }
+   ]
+  }
+ },
+ "oasis": {
+  "handler": "stat_boost",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "all",
+  "_comment_entry": "The DOS original opens the Oasis when a hero steps onto its entrance from above as well as from below (probed 2026-09-23, tests/test_native_directional_passability.gd), so it is not a building-style entrance.",
+  "footprint": [],
+  "minimap": "pickup",
+  "params": {
+   "stat": "morale",
+   "amount": 1,
+   "once": "per_battle"
+  },
+  "art": {
+   "dir": "obj32-05",
+   "sprite": 14
+  }
+ },
+ "statue": {
+  "handler": "stat_boost",
+  "action_offset": [
+   0,
+   1
+  ],
+  "entry": "all",
+  "_comment_entry": "The DOS original opens it when a hero steps onto it from above as well as from below (probed 2026-09-23 on a copied native one), so it is not a building-style entrance.",
+  "tall": true,
+  "stop_before": true,
+  "footprint": [],
+  "minimap": "pickup",
+  "params": {
+   "stat": "morale",
+   "amount": 2,
+   "once": "per_battle"
+  },
+  "art": {
+   "dir": "obj32-07",
+   "layers": [
+    {
+     "tile": [
+      0,
+      1
+     ],
+     "ids": [
+      31
+     ]
+    },
+    {
+     "tile": [
+      0,
+      0
+     ],
+     "ids": [
+      32
+     ]
+    }
+   ]
+  }
+ },
+ "buoy": {
+  "handler": "stat_boost",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "all",
+  "footprint": [],
+  "minimap": "pickup",
+  "params": {
+   "stat": "morale",
+   "amount": 1,
+   "once": "per_battle"
+  },
+  "art": {
+   "dir": "obj32-00",
+   "sprite": 7,
+   "anim": {
+    "frames": [
+     8,
+     9,
+     10,
+     11,
+     12,
+     13
+    ],
+    "fps": 7.8
+   }
+  }
+ },
+ "_comment_guarded_pickup": "The generic 'battle then banded reward' SEAM. handler=guarded_pickup builds a GuardedPickup whose params.outcomes = [{p (weight), guard:[[unit,count]...], reward:{gold?,exp?,artifact?}}...]. Visiting rolls ONE band (weighted p, Game.rng), fights its guard; on victory the same band's reward is applied (InteractionResolver.resolve_post_battle / AITurnRunner). This bare 'guarded_pickup' entry is the seam type only \u2014 it carries an EMPTY outcomes list and is never placed on any map (smoke stays 21). The real placeable types (graveyard/demon_cave/dragon_city) build on it, each with handler=guarded_pickup + its own authentic outcomes in default_params. Guard compositions and encounter formations are authentic to HOMM1 (Graveyard/Shipwreck 5 ghost stacks, Dragon City 5 dragons, Demon Cave narrative event).",
+ "guarded_pickup": {
+  "handler": "guarded_pickup",
+  "action_offset": [
+   0,
+   0
+  ],
+  "footprint": [],
+  "minimap": "enemy",
+  "params": {
+   "outcomes": []
+  }
+ },
+ "_comment_graveyard": "Graveyard (data/knowledge_base/adventure-object-catalog.md Graveyard row). handler=guarded_pickup. AUTHENTIC 30/30/30/10 band probabilities + gold rewards from the note: [30%]->1000g, [30%]->2000g, [30%]->5000g, [10%]->2000g + an artifact. Guarded by 10/15/25/50 ghosts across bands in 5 equal stacks across defender slots (2, 3, 5, 10 per slot). 10%-band artifact = fixed authored 'witch_broach' (Witch's Broach; thematically a graveyard relic per data/knowledge_base/artifacts.md, and distinct from skirmish01's thunder_mace pickup, honoring HOMM1's no-duplicate-artifact rule). looted_effect: revisiting an already-plundered graveyard applies -1 morale, no repeat battle. The real graveyard is a 3-tile scene in obj32-07 (id 12 crypt-left / id 13 tombstone-cluster-center / id 14 mausoleum+tree-right); the single-tile catalog art uses the central id 13 (white tombstones + black picket fence on a dirt mound).",
+ "graveyard": {
+  "handler": "guarded_pickup",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "building",
+  "footprint": [],
+  "minimap": "enemy",
+  "params": {
+   "outcomes": [
+    {
+     "p": 0.3,
+     "guard": [
+      [
+       "ghost",
+       2
+      ],
+      [
+       "ghost",
+       2
+      ],
+      [
+       "ghost",
+       2
+      ],
+      [
+       "ghost",
+       2
+      ],
+      [
+       "ghost",
+       2
+      ]
+     ],
+     "reward": {
+      "gold": 1000
+     }
+    },
+    {
+     "p": 0.3,
+     "guard": [
+      [
+       "ghost",
+       3
+      ],
+      [
+       "ghost",
+       3
+      ],
+      [
+       "ghost",
+       3
+      ],
+      [
+       "ghost",
+       3
+      ],
+      [
+       "ghost",
+       3
+      ]
+     ],
+     "reward": {
+      "gold": 2000
+     }
+    },
+    {
+     "p": 0.3,
+     "guard": [
+      [
+       "ghost",
+       5
+      ],
+      [
+       "ghost",
+       5
+      ],
+      [
+       "ghost",
+       5
+      ],
+      [
+       "ghost",
+       5
+      ],
+      [
+       "ghost",
+       5
+      ]
+     ],
+     "reward": {
+      "gold": 5000
+     }
+    },
+    {
+     "p": 0.1,
+     "guard": [
+      [
+       "ghost",
+       10
+      ],
+      [
+       "ghost",
+       10
+      ],
+      [
+       "ghost",
+       10
+      ],
+      [
+       "ghost",
+       10
+      ],
+      [
+       "ghost",
+       10
+      ]
+     ],
+     "reward": {
+      "gold": 2000,
+      "artifact": "witch_broach"
+     }
+    }
+   ],
+   "looted_effect": {
+    "morale": -1,
+    "message": "Upon defeating the ghosts you spend several hours searching the graves and find nothing.  Such a despicable act reduces your army's morale."
+   }
+  },
+  "art": {
+   "dir": "obj32-07",
+   "sprite": 13
+  }
+ },
+ "_comment_demon_cave": "Demon Cave (data/knowledge_base/adventure-object-catalog.md Demon Cave row). handler=guarded_pickup. FIRST-VISIT-ONLY (looted after ANY outcome; revisit inert). AUTHENTIC 30/30/30/10 band probabilities + effects from the note and original game: in authentic HOMM1, Demon Cave has NO tactical combat; it is an adventure narrative text event. [30%] CAPTURED -> 2500-gold ransom, refuse -> hero DESTROYED; [30%] victory -> +1000 XP; [30%] victory -> +1000 XP + 2500 gold; [10%] victory -> +1000 XP + an artifact. The RANSOM band carries a `ransom` key; bands 1, 2, 3 grant the respective rewards with their authentic narrative popups. 10%-band artifact = 'dragon_sword'.",
+ "demon_cave": {
+  "handler": "guarded_pickup",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "building",
+  "tall": true,
+  "footprint": [
+   [
+    1,
+    0
+   ]
+  ],
+  "minimap": "enemy",
+  "params": {
+   "outcomes": [
+    {
+     "p": 0.3,
+     "ransom": 2500
+    },
+    {
+     "p": 0.3,
+     "reward": {
+      "exp": 1000
+     }
+    },
+    {
+     "p": 0.3,
+     "reward": {
+      "exp": 1000,
+      "gold": 2500
+     }
+    },
+    {
+     "p": 0.1,
+     "reward": {
+      "exp": 1000,
+      "artifact": "dragon_sword"
+     }
+    }
+   ]
+  },
+  "art": {
+   "dir": "obj32-05",
+   "layers": [
+    {
+     "tile": [
+      0,
+      -1
+     ],
+     "ids": [
+      10
+     ]
+    },
+    {
+     "tile": [
+      1,
+      -1
+     ],
+     "ids": [
+      11
+     ]
+    },
+    {
+     "tile": [
+      0,
+      0
+     ],
+     "ids": [
+      8
+     ]
+    },
+    {
+     "tile": [
+      1,
+      0
+     ],
+     "ids": [
+      9
+     ]
+    }
+   ]
+  }
+ },
+ "_comment_demon_cave_event_ui": "2026-08-11 runtime correction, superseding the older comment above where presentation differs: the bundled original executable supplies the exact titled 'Daemon Cave' strings. A fresh human visit opens the canonical Yes/No entry prompt before any outcome is rolled; No leaves the cave untouched. Yes continues into the existing 30/30/30/10 outcome. Solvent ransom uses the canonical Yes/No pay prompt; insufficient gold opens the canonical fatal text with Okay, then destroys the hero. Narrative victory bands open their matching original text directly. A looted revisit is mechanically inert but opens the canonical empty-cave flavor window.",
+ "_comment_shipwreck": "KB objects.md \u00a77.2 / bugs.md \u00a7156: Shipwreck offers a fight with the guardians of an abandoned ship. In authentic HOMM1, defeating 50 ghosts (5 stacks of 10 ghosts) awards 2000 gold and a random artifact. Visiting a plundered shipwreck reduces morale by -1 (looted_effect).",
+ "shipwreck": {
+  "handler": "guarded_pickup",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "all",
+  "footprint": [],
+  "minimap": "enemy",
+  "params": {
+   "outcomes": [
+    {
+     "p": 1.0,
+     "guard": [
+      [
+       "ghost",
+       10
+      ],
+      [
+       "ghost",
+       10
+      ],
+      [
+       "ghost",
+       10
+      ],
+      [
+       "ghost",
+       10
+      ],
+      [
+       "ghost",
+       10
+      ]
+     ],
+     "reward": {
+      "gold": 2000,
+      "artifact": "random"
+     }
+    }
+   ],
+   "looted_effect": {
+    "morale": -1,
+    "message": "Upon defeating the ghosts you spend several hours sifting through the debris and find nothing.  Such a despicable act reduces your army's morale."
+   }
+  },
+  "art": {
+   "dir": "obj32-00",
+   "sprite": 14,
+   "anim": {
+    "frames": [
+     15,
+     16,
+     17,
+     18,
+     19,
+     20
+    ],
+    "fps": 7.8
+   }
+  }
+ },
+ "_comment_dragon_city": "Dragon City (KB objects.md \u00a77.2). handler=dragon_city (NOT guarded_pickup -- this is a CAPTURE-then-daily-yield site like a Mine, not a one-shot banded reward: one battle vs the 5-stack guard, win -> owner flips permanently, then 1000 gold/day forever via the advance_day per-owner sweep, mirroring Mine.daily_yield()). AUTHENTIC: guarded by 5 dragon stacks (one dragon per stack), only one Dragon City can exist per map, 1000 gold/day after capture. Guard is AUTHORED on the map placement (top-level `guard` spec key, exactly like Mine's res/daily/guard -- default if absent is 5 separate 1-dragon stacks, matching native maps).",
+ "_comment_dragon_city_art_correction": "2026-08-11 screenshot correction: the earlier mtncast placeholder analysis above is superseded. Native HOMM1 maps identify Dragon City with B8=150 on rsrc32:60 and place rsrc32:51-59 around it in a 3x3-plus-roof composite. ObjectLayer now reconstructs those ten native pieces for both imported and hand-authored maps.",
+ "dragon_city": {
+  "handler": "dragon_city",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "building",
+  "tall": true,
+  "footprint": [],
+  "minimap": "building",
+  "params": {},
+  "art": {
+   "dir": "rsrc32",
+   "sprite": 60
+  }
+ },
+ "_comment_skeleton": "Skeleton (data/knowledge_base/adventure-object-catalog.md Skeleton row, 'Confirmed 10/90 split from handbook'). handler=pickup (reuses the chest/campfire roll pattern, NOT guarded_pickup -- no fight, no bands, just a coin-flip). AUTHENTIC from the note: first hero to search it rolls ONCE via Game.rng -- [10%] a random artifact, [90%] nothing. 'Only the first visiting hero rolls' means the FIRST roll by ANY hero is the only roll that will ever happen, so the gate is the base `consumed` field (set true on that first visit regardless of outcome), NOT per-hero `visited_by` -- a second hero (or the same hero revisiting) always finds it empty, no re-roll. Artifact pool ('a minor artifact' per fandom's qualitative corroboration): a small pool of four +1-tier artifacts distinct from every artifact already used elsewhere in this project (thunder_mace/skirmish01 pickup, witch_broach/graveyard, dragon_sword/demon_cave), honoring HOMM1's documented no-duplicate-artifact rule for Skeleton/Shipwreck/Demon Cave/Graveyard (data/knowledge_base/artifacts.md 6.3): giant_flail (+1 Attack), defender_gauntlet (+1 Defense), medal_of_courage (+1 Morale), four_leaf_clover (+1 Luck). TERRAIN: desert only (note); skirmish01 is a grass showcase map with no desert tiles, so -- like oasis/faerie_ring before it -- this is CATALOG + TEST ONLY, never placed on any map (smoke stays 24, no visual gate). ART re-verified via labeled obj32 contact-sheets covering all 8 obj32-00..07 dirs + object32 + object/creature-icon dirs (art32/mons32/monsters, ruled OUT: those back artifact-icon/army-portrait rendering, never adventure-map MapObject art, which draws only from obj32-NN per every existing catalog row): the note's inherited hint (id 7, no dir given) resolves to obj32-01:7, a small plain gray rock cluster -- WRONG, no bones/skull motif. The real skeletal-remains tile is in the desert-exclusive set (obj32-05, the same dir backing the already-verified Demon Cave cave-mouth id 8 and Oasis id 14): id 23 -- a small sun-bleached bone/ribcage-shaped brown-black mound with a glint of buried treasure (a pale dot + a gold fleck) half-buried in sand, thematically exact for a 'search these bones for a hidden trinket' site. Corrected in the note row.",
+ "skeleton": {
+  "handler": "pickup",
+  "action_offset": [
+   0,
+   0
+  ],
+  "footprint": [],
+  "minimap": "pickup",
+  "params": {
+   "chance": 0.1,
+   "artifact_pool": [
+    "giant_flail",
+    "defender_gauntlet",
+    "medal_of_courage",
+    "four_leaf_clover"
+   ]
+  },
+  "art": {
+   "dir": "obj32-05",
+   "sprite": 23
+  }
+ },
+ "_comment_stone_liths": "Stone Liths / Menhir (data/knowledge_base/adventure-object-catalog.md's row). handler=teleport scans ctx.map.objects for every OTHER stone_liths, excludes destinations whose action_tile is in ctx.occupied_tiles, and picks one at random via Game.rng; never consumed (repeatable). Art id re-verified via a labeled contact-sheet of all 8 assets/art/obj32-NN/ dirs (609 sprites) -- the note's inherited hint (obj32 id 115) was WRONG in BOTH dirs that have an id 115 (obj32-01:115 is a grass/water shoreline terrain tile; obj32-07:115 is a windmill-sail-blade animation frame). The real sprite is a distinctive grey trilithon (two standing stones + capstone) with a glowing cyan teleport-energy arch underneath and small crystal/rock clusters at its base -- unmistakably a teleporter structure, at obj32-07, id 6.",
+ "stone_liths": {
+  "handler": "teleport",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "building",
+  "footprint": [],
+  "minimap": "pickup",
+  "params": {},
+  "art": {
+   "dir": "obj32-07",
+   "sprite": 6
+  }
+ },
+ "_comment_weekly": "Windmill + Watermill (data/knowledge_base/adventure-object-catalog.md Windmill/Watermill rows). handler=weekly_pickup builds a WeeklyPickup whose `last_collected_week` gates repeat visits to once per GAME WEEK (Game.state.day; week index = (day-1)/GameState.DAYS_PER_WEEK) -- its own tick system beside the daily mine/dragon-city sweep. Windmill: AUTHENTIC +2 units of a RANDOM resource, NEVER gold or wood -- enforced by the pool simply excluding both (ore/mercury/sulfur/crystal/gems), rolled via Game.rng. Watermill: AUTHENTIC 1000 gold/week, BUT the very FIRST-EVER collection, if it lands in game week 1 (week index 0, i.e. Game.state.day 1-7), yields only 500 gold (note's caveat 2) -- tracked via last_collected_week==-1 at visit start combined with current_week==0, not a separate 'first visit ever' flag. Both terrains grass/dirt per the note; skirmish01 is a grass showcase map so this placement is AUTHENTIC terrain (no deviation flag needed, unlike Demon Cave/Graveyard/Skeleton). ART re-verified via labeled obj32-07 contact-sheets (the note's inherited hints, windmill=6 and watermill=101 with no dir given, were both UNVERIFIED placeholders and WRONG: obj32-07 id 6 is the already-verified stone_liths trilithon, not a mill; obj32-07 id 101 is an unrelated small grey/brown fragment). The real assets: obj32-07 contains a documented run of windmill SAIL-BLADE rotation frames at ids 105-124 (first noted as a stone_liths id-115 distractor) -- ids 106-111 are now wired up as a rotating overlay (art.anim, mirroring the mine mercury-animation precedent) atop the matching mill BODY/tower id 91, a small stone building with a red conical roof. Watermill's asset is unambiguous: obj32-07 id 40, a wooden building with an attached paddle/water wheel sitting in blue water -- a clean, confident match.",
+ "windmill": {
+  "handler": "weekly_pickup",
+  "action_offset": [
+   1,
+   0
+  ],
+  "entry": "building",
+  "entry_tiles": [
+   [
+    0,
+    0
+   ]
+  ],
+  "_comment_entry_tiles": "The hut at (0,0) shares the tower's building mask for entry and exit. Measured in DOS on Claw: the route to the windmill enters the hut (40,53) from the west, never diagonally from (39,52), and a hero standing on the hut detours west to reach the artifact at (42,51) instead of stepping north or north-east.",
+  "tall": true,
+  "footprint": [],
+  "minimap": "building",
+  "params": {
+   "stat": "resource_random",
+   "amount": 2,
+   "pool": [
+    "ore",
+    "mercury",
+    "sulfur",
+    "crystal",
+    "gems"
+   ]
+  },
+  "_comment_art_fix": "Full sailed windmill, human-verified against reference screenshots (source PNGs confirmed byte-identical via md5) across several rounds of visual correction -- see data/knowledge_base/adventure-object-catalog.md's Windmill row for the art history. Final layout: a 4-tile (2 wide x 2 tall) block, all obj32-07, all native spec.json offsets, no manual pixel shifts. tile(0,0) = hut(91) + upper-left sail anim(92-97); tile(1,0) = tower stub w/ door+window(98) + upper-right sail anim(99-104); tile(0,-1) = upper-top sail anim(106-111); tile(1,-1) = upper-right-top sail anim(113-118) + static hub-joint filler(112). All 4 sail anim_groups share fps+frame-count so the shared _active_animations clock in object_layer.gd keeps every tile's blades locked to the same rotation step. id 105 is a genuine 1x1 empty stub, unused. skirmish01.json's placement needs a clear 2x2 tile block with no obstruction one row north (see that map's own windmill entry).",
+  "art": {
+   "dir": "obj32-07",
+   "layers": [
+    {
+     "tile": [
+      0,
+      0
+     ],
+     "ids": [
+      91
+     ]
+    },
+    {
+     "tile": [
+      1,
+      0
+     ],
+     "ids": [
+      98
+     ]
+    },
+    {
+     "tile": [
+      0,
+      0
+     ],
+     "anim_groups": [
+      {
+       "frames": [
+        92,
+        93,
+        94,
+        95,
+        96,
+        97
+       ],
+       "fps": 7.8
+      }
+     ]
+    },
+    {
+     "tile": [
+      1,
+      0
+     ],
+     "anim_groups": [
+      {
+       "frames": [
+        99,
+        100,
+        101,
+        102,
+        103,
+        104
+       ],
+       "fps": 7.8
+      }
+     ]
+    },
+    {
+     "tile": [
+      0,
+      -1
+     ],
+     "anim_groups": [
+      {
+       "frames": [
+        106,
+        107,
+        108,
+        109,
+        110,
+        111
+       ],
+       "fps": 7.8
+      }
+     ]
+    },
+    {
+     "tile": [
+      1,
+      -1
+     ],
+     "ids": [
+      112
+     ],
+     "anim_groups": [
+      {
+       "frames": [
+        113,
+        114,
+        115,
+        116,
+        117,
+        118
+       ],
+       "fps": 7.8
+      }
+     ]
+    }
+   ],
+   "_comment_fps": "7.8 fps is the engine's adventure-map tick, measured in DOSBox on this very windmill among others; see world_static_canvas.gd NATIVE_FPS. The sails read as twice that fast because 92 to 94 are stored again as 95 to 97, so a six-frame loop shows three images."
+  }
+ },
+ "watermill": {
+  "handler": "weekly_pickup",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "building",
+  "tall": true,
+  "footprint": [],
+  "minimap": "building",
+  "params": {
+   "gold": 1000,
+   "first_week_gold": 500
+  },
+  "art": {
+   "dir": "obj32-07",
+   "sprite": 40
+  }
+ },
+ "_comment_obelisk": "Obelisk (data/knowledge_base/adventure-object-catalog.md Obelisk row). handler=obelisk (new, generic-MapObject-shaped -- no dedicated class needed, same hybrid pattern as `sign`). AUTHENTIC from the note: reveals the ENTIRE map if it is the only obelisk on the map, else reveals one puzzle-map piece; repeat visits by the same player are inert ('already visited'); never consumed; max 48/map (not enforced -- placement-time concern only). Reference-confirmed movement: stop before the Obelisk action tile, remain adjacent, and face the stone. Per-player progress lives on PlayerState.puzzle_pieces (obelisk ids visited), NOT MapObject.visited_by -- a puzzle piece is kingdom-wide knowledge like the fog-of-war `explored` bitset, not per-hero. The puzzle-map UI and the dig/Ultimate-Artifact chain build on this. ART CORRECTION: the note's inherited hint 'id 108 (unverified)' is WRONG -- a labeled contact-sheet of obj32-07 shows id 108 is part of the already-identified windmill sail-blade animation run (ids 105-118, see the windmill row above), not an obelisk. The real sprite is a tall grey stone monolith/pillar standing on a grass mound at obj32-01, id 15 (zoomed and visually confirmed distinct from every neighboring sprite in that dir, including the gazebo at id 11 and the berry tree at id 16).",
+ "obelisk": {
+  "handler": "obelisk",
+  "action_offset": [
+   0,
+   0
+  ],
+  "stop_before": true,
+  "entry": "all",
+  "footprint": [],
+  "minimap": "pickup",
+  "params": {},
+  "art": {
+   "dir": "obj32-01",
+   "sprite": 15
+  }
+ },
+ "_comment_oracle": "Oracle is presented as 'Shrine' by the original event window. It is repeatable and opens the complete four-level Thieves' Guild comparison after the blind-seer introduction: all configured players ranked by towns, castles, heroes, treasury gold, common resources, rare resources, obelisks found, and total army strength; tied players share a rank column. The native UI is reconstructed in src/ui/shrine_dialog.gd and src/ui/oracle_screen.gd from the supplied reference and decoded thiefwin.bin layout. Native interactive art is obj32-01:12 (B8 class 141); obj32-01:17 belongs to the separate spell-teaching shrine classes 161/162.",
+ "_comment_oracle_art_correction": "The preceding art claim is superseded by the supplied map reference and native-map cell data. B8 class 161 is the Oracle/Shrine and uses the stable 3x2 obj32-01 composite 18/19/20 above 21/23/22, with frame 23 as the center-bottom interaction tile. Frames 18-20 are layer-2 back plates; frame 21 and the interactive frame 23 block. The old obj32-01:12 / B8=141 assignment is the Straw Hut goblin dwelling, not the Oracle. B8=162 / obj32-01:17 remains the separate spell-teaching shrine.",
+ "oracle": {
+  "handler": "oracle",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "building",
+  "tall": true,
+  "footprint": [
+   [
+    -1,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "minimap": "building",
+  "params": {},
+  "art": {
+   "dir": "obj32-01",
+   "layers": [
+    {
+     "tile": [
+      -1,
+      -1
+     ],
+     "ids": [
+      18
+     ]
+    },
+    {
+     "tile": [
+      0,
+      -1
+     ],
+     "ids": [
+      19
+     ]
+    },
+    {
+     "tile": [
+      1,
+      -1
+     ],
+     "ids": [
+      20
+     ]
+    },
+    {
+     "tile": [
+      -1,
+      0
+     ],
+     "ids": [
+      21
+     ]
+    },
+    {
+     "tile": [
+      0,
+      0
+     ],
+     "ids": [
+      23
+     ]
+    },
+    {
+     "tile": [
+      1,
+      0
+     ],
+     "ids": [
+      22
+     ]
+    }
+   ]
+  }
+ },
+ "lighthouse": {
+  "handler": "lighthouse",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "building",
+  "tall": true,
+  "footprint": [
+   [
+    -1,
+    0
+   ],
+   [
+    0,
+    0
+   ]
+  ],
+  "minimap": "building",
+  "params": {},
+  "art": {
+   "dir": "rsrc32",
+   "_comment": "The four pieces every one of the 17 native scenarios stores, identically, relative to the action tile: rock skirt at (-2,0), tower body at (-1,0), lamp room at (-1,-1) with the beam sweeping across its glass, and the keeper's shack on the action tile with a flickering window. The old entry stacked 69, 70 and 71 in one column, which put the tower body on top, the shack inside the tower and a 2x4 window speck alone on the base tile. Confirmed against the DOS original on Badlands and Squirrel Lake. The 7.8 fps is measured: the beam's six-frame loop runs in 0.770 s in DOSBox, on this object and on a windmill and a watermill.",
+   "layers": [
+    {
+     "tile": [
+      -2,
+      0
+     ],
+     "ids": [
+      68
+     ]
+    },
+    {
+     "tile": [
+      -1,
+      0
+     ],
+     "ids": [
+      69
+     ]
+    },
+    {
+     "tile": [
+      -1,
+      -1
+     ],
+     "ids": [
+      77
+     ],
+     "anim_groups": [
+      {
+       "frames": [
+        78,
+        79,
+        80,
+        81,
+        82,
+        83
+       ],
+       "fps": 7.8
+      }
+     ]
+    },
+    {
+     "tile": [
+      0,
+      0
+     ],
+     "ids": [
+      70
+     ],
+     "anim_groups": [
+      {
+       "frames": [
+        71,
+        72,
+        73,
+        74,
+        75,
+        76
+       ],
+       "fps": 7.8
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "whirlpool": {
+  "handler": "whirlpool",
+  "action_offset": [
+   0,
+   0
+  ],
+  "entry": "all",
+  "footprint": [],
+  "minimap": "pickup",
+  "params": {},
+  "art": {
+   "dir": "obj32-00",
+   "sprite": 49,
+   "anim": {
+    "frames": [
+     49,
+     56,
+     63
+    ],
+    "fps": 6.0
+   }
+  }
+ }
+}

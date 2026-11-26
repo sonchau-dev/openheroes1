@@ -1,0 +1,168 @@
+{
+  "peasant": {
+    "native_id": 0, "singular": "peasant", "plural": "peasants", "faction": "Knight", "attack_effect": "physical",
+    "attack": 1, "defense": 1, "damage_min": 1, "damage_max": 1, "hp": 1,
+    "speed": 1, "speed_name": "Slow", "shots": 0, "abilities": []
+  },
+  "archer": {
+    "native_id": 1, "singular": "archer", "plural": "archers", "faction": "Knight", "attack_effect": "physical",
+    "attack": 5, "defense": 3, "damage_min": 2, "damage_max": 3, "hp": 10,
+    "speed": 1, "speed_name": "Slow", "shots": 12, "abilities": ["Shoots"]
+  },
+  "pikeman": {
+    "native_id": 2, "singular": "pikeman", "plural": "pikemen", "faction": "Knight", "attack_effect": "physical",
+    "attack": 5, "defense": 9, "damage_min": 3, "damage_max": 4, "hp": 15,
+    "speed": 2, "speed_name": "Medium", "shots": 0, "abilities": []
+  },
+  "swordsman": {
+    "native_id": 3, "singular": "swordsman", "plural": "swordsmen", "faction": "Knight", "attack_effect": "physical",
+    "attack": 7, "defense": 9, "damage_min": 4, "damage_max": 6, "hp": 25,
+    "speed": 2, "speed_name": "Medium", "shots": 0, "abilities": []
+  },
+  "cavalry": {
+    "native_id": 4, "singular": "cavalry", "plural": "cavalries", "faction": "Knight", "attack_effect": "physical",
+    "attack": 10, "defense": 9, "damage_min": 5, "damage_max": 10, "hp": 30,
+    "speed": 3, "speed_name": "Fast", "shots": 0, "wide": true, "abilities": []
+  },
+  "paladin": {
+    "native_id": 5, "singular": "paladin", "plural": "paladins", "faction": "Knight", "attack_effect": "physical",
+    "attack": 11, "defense": 12, "damage_min": 10, "damage_max": 20, "hp": 50,
+    "speed": 3, "speed_name": "Fast", "shots": 0, "double_attack": true,
+    "abilities": ["Attacks twice"]
+  },
+
+  "goblin": {
+    "native_id": 6, "singular": "goblin", "plural": "goblins", "faction": "Barbarian", "attack_effect": "physical",
+    "attack": 3, "defense": 1, "damage_min": 1, "damage_max": 2, "hp": 3,
+    "speed": 2, "speed_name": "Medium", "shots": 0, "abilities": []
+  },
+  "orc": {
+    "native_id": 7, "singular": "orc", "plural": "orcs", "faction": "Barbarian", "attack_effect": "physical",
+    "attack": 3, "defense": 4, "damage_min": 2, "damage_max": 3, "hp": 10,
+    "speed": 1, "speed_name": "Slow", "shots": 8, "abilities": ["Shoots"]
+  },
+  "wolf": {
+    "native_id": 8, "singular": "wolf", "plural": "wolves", "faction": "Barbarian", "attack_effect": "physical",
+    "attack": 6, "defense": 2, "damage_min": 3, "damage_max": 5, "hp": 20,
+    "speed": 3, "speed_name": "Fast", "shots": 0, "wide": true, "double_attack": true,
+    "abilities": ["Attacks twice"]
+  },
+  "ogre": {
+    "native_id": 9, "singular": "ogre", "plural": "ogres", "faction": "Barbarian", "attack_effect": "physical",
+    "attack": 9, "defense": 5, "damage_min": 4, "damage_max": 6, "hp": 40,
+    "speed": 1, "speed_name": "Slow", "shots": 0, "abilities": []
+  },
+  "troll": {
+    "native_id": 10, "singular": "troll", "plural": "trolls", "faction": "Barbarian", "attack_effect": "physical",
+    "attack": 10, "defense": 5, "damage_min": 5, "damage_max": 7, "hp": 40,
+    "speed": 2, "speed_name": "Medium", "shots": 8, "regeneration": true,
+    "abilities": ["Shoots", "Regenerates"]
+  },
+  "cyclops": {
+    "native_id": 11, "singular": "cyclops", "plural": "cyclopes", "faction": "Barbarian", "attack_effect": "redfire",
+    "attack": 12, "defense": 9, "damage_min": 12, "damage_max": 24, "hp": 80,
+    "speed": 2, "speed_name": "Medium", "shots": 0, "two_cell_attack": true,
+    "paralyze_chance": 0.2, "strike_effect_rounds": 3,
+    "abilities": ["Two-cell attack", "20% chance to paralyze"]
+  },
+
+  "sprite": {
+    "native_id": 12, "singular": "sprite", "plural": "sprites", "faction": "Sorceress", "attack_effect": "electric",
+    "attack": 4, "defense": 2, "damage_min": 1, "damage_max": 2, "hp": 2,
+    "speed": 2, "speed_name": "Medium", "shots": 0, "flying": true,
+    "no_retaliation": true, "abilities": ["Flies", "No enemy retaliation"]
+  },
+  "dwarf": {
+    "native_id": 13, "singular": "dwarf", "plural": "dwarves", "faction": "Sorceress", "attack_effect": "physical",
+    "attack": 6, "defense": 5, "damage_min": 2, "damage_max": 4, "hp": 20,
+    "speed": 1, "speed_name": "Slow", "shots": 0, "magic_resist": 0.25,
+    "abilities": ["25% magic resistance"]
+  },
+  "elf": {
+    "native_id": 14, "singular": "elf", "plural": "elves", "faction": "Sorceress", "attack_effect": "physical",
+    "attack": 4, "defense": 3, "damage_min": 2, "damage_max": 3, "hp": 15,
+    "speed": 2, "speed_name": "Medium", "shots": 24, "double_attack": true,
+    "abilities": ["Shoots", "Attacks twice"]
+  },
+  "druid": {
+    "native_id": 15, "singular": "druid", "plural": "druids", "faction": "Sorceress", "attack_effect": "redfire",
+    "attack": 7, "defense": 5, "damage_min": 5, "damage_max": 8, "hp": 25,
+    "speed": 3, "speed_name": "Fast", "shots": 8, "abilities": ["Shoots"]
+  },
+  "unicorn": {
+    "native_id": 16, "singular": "unicorn", "plural": "unicorns", "faction": "Sorceress", "attack_effect": "electric",
+    "attack": 10, "defense": 9, "damage_min": 7, "damage_max": 14, "hp": 40,
+    "speed": 2, "speed_name": "Medium", "shots": 0, "wide": true,
+    "blind_chance": 0.2, "strike_effect_rounds": 3,
+    "abilities": ["20% chance to blind"]
+  },
+  "phoenix": {
+    "native_id": 17, "singular": "phoenix", "plural": "phoenix", "faction": "Sorceress", "attack_effect": "redfire",
+    "attack": 12, "defense": 10, "damage_min": 20, "damage_max": 40, "hp": 100,
+    "speed": 3, "speed_name": "Fast", "shots": 0, "wide": true, "flying": true,
+    "two_cell_attack": true,
+    "abilities": ["Flies", "Two-cell attack"]
+  },
+
+  "centaur": {
+    "native_id": 18, "singular": "centaur", "plural": "centaurs", "faction": "Warlock", "attack_effect": "physical",
+    "attack": 3, "defense": 1, "damage_min": 1, "damage_max": 2, "hp": 5,
+    "speed": 2, "speed_name": "Medium", "shots": 8, "wide": true, "abilities": ["Shoots"]
+  },
+  "gargoyle": {
+    "native_id": 19, "singular": "gargoyle", "plural": "gargoyles", "faction": "Warlock", "attack_effect": "bluefire",
+    "attack": 4, "defense": 7, "damage_min": 2, "damage_max": 3, "hp": 15,
+    "speed": 3, "speed_name": "Fast", "shots": 0, "flying": true, "abilities": ["Flies"]
+  },
+  "griffin": {
+    "native_id": 20, "singular": "griffin", "plural": "griffins", "faction": "Warlock", "attack_effect": "physical",
+    "attack": 6, "defense": 6, "damage_min": 3, "damage_max": 5, "hp": 25,
+    "speed": 2, "speed_name": "Medium", "shots": 0, "wide": true, "flying": true,
+    "infinite_retaliation": true, "abilities": ["Flies", "Unlimited retaliation"]
+  },
+  "minotaur": {
+    "native_id": 21, "singular": "minotaur", "plural": "minotaurs", "faction": "Warlock", "attack_effect": "physical",
+    "attack": 9, "defense": 8, "damage_min": 5, "damage_max": 10, "hp": 35,
+    "speed": 2, "speed_name": "Medium", "shots": 0, "abilities": []
+  },
+  "hydra": {
+    "native_id": 22, "singular": "hydra", "plural": "hydras", "faction": "Warlock", "attack_effect": "physical",
+    "attack": 8, "defense": 9, "damage_min": 6, "damage_max": 12, "hp": 75,
+    "speed": 1, "speed_name": "Slow", "shots": 0, "wide": true, "no_retaliation": true,
+    "attack_all_adjacent": true,
+    "abilities": ["Attacks all adjacent enemies", "No enemy retaliation"]
+  },
+  "dragon": {
+    "native_id": 23, "singular": "dragon", "plural": "dragons", "faction": "Warlock", "attack_effect": "bluefire",
+    "attack": 12, "defense": 12, "damage_min": 25, "damage_max": 50, "hp": 200,
+    "speed": 2, "speed_name": "Medium", "shots": 0, "wide": true, "flying": true,
+    "two_cell_attack": true,
+    "magic_immune": true, "mind_immune": true,
+    "abilities": ["Flies", "Two-cell attack", "Immune to magic"]
+  },
+
+  "rogue": {
+    "native_id": 24, "singular": "rogue", "plural": "rogues", "faction": "Neutral", "attack_effect": "physical",
+    "attack": 6, "defense": 1, "damage_min": 1, "damage_max": 2, "hp": 4,
+    "speed": 3, "speed_name": "Fast", "shots": 0, "no_retaliation": true,
+    "abilities": ["No enemy retaliation"]
+  },
+  "nomad": {
+    "native_id": 25, "singular": "nomad", "plural": "nomads", "faction": "Neutral", "attack_effect": "physical",
+    "attack": 7, "defense": 6, "damage_min": 2, "damage_max": 5, "hp": 20,
+    "speed": 3, "speed_name": "Fast", "shots": 0, "wide": true, "abilities": []
+  },
+  "ghost": {
+    "native_id": 26, "singular": "ghost", "plural": "ghosts", "faction": "Neutral", "attack_effect": "cloud",
+    "attack": 8, "defense": 7, "damage_min": 4, "damage_max": 6, "hp": 20,
+    "speed": 2, "speed_name": "Medium", "shots": 0, "flying": true, "undead": true,
+    "raise_killed": true, "abilities": ["Flies", "Raises killed creatures as ghosts"]
+  },
+  "genie": {
+    "native_id": 27, "singular": "genie", "plural": "genies", "faction": "Neutral", "attack_effect": "electric",
+    "attack": 10, "defense": 9, "damage_min": 20, "damage_max": 30, "hp": 50,
+    "speed": 3, "speed_name": "Fast", "shots": 0, "flying": true,
+    "halve_chance": 0.2,
+    "abilities": ["Flies", "20% chance to halve enemy stack"]
+  }
+}

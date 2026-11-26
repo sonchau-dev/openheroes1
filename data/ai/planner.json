@@ -1,0 +1,156 @@
+{
+  "_source": "heroes.exe 0x693d4, the computer's hero move decision, with its location potential 0x73410 and route search 0x86b64, decoded 2026-10-03 (data/knowledge_base/research/ai-planner-decodes.md, 'Move decision' and 'Location potential'). Costs are movement points, the units of Hero.step_cost and of the original's route table (cost word >> 4).",
+
+  "budget": {
+    "_comment": "Planning budget B = trunc((max move + offset) x ((AI level - 1) x per_level + base)). On the hero's tile: snow or swamp x rough and grid step - 1, desert x desert and grid step - 2. Candidates are reached tiles within B on the grid, interactive tiles within B, the remembered destination, and towns and heroes within far x B; the route search runs to search x B.",
+    "offset": 42,
+    "per_level": 0.06,
+    "base": 0.8,
+    "rough": 1.25,
+    "rough_terrain": ["snow", "swamp"],
+    "desert": 1.5,
+    "desert_terrain": ["desert"],
+    "far": 2,
+    "search": 3
+  },
+
+  "grid": {"divisor": 6, "minimum": 3},
+
+  "support": {
+    "_comment": "0x69fcd..0x6a2c6, once per hero turn, when the hero is picked: S = the hero's plain army rating, at least minimum. Over the tiles a route search from the hero reaches within reach x max move (stopping at objects and monster zones): an own town whose garrison G beats own_ratio x S adds (G / (own_ratio x S) - 1) x (max move + own_offset) / (cost + own_offset) to A; another's town or hero whose army R beats enemy_ratio x S adds (R / (enemy_ratio x S) - 1) x (max move + enemy_offset) / (cost + enemy_offset) to B. When A and B both exceed 1, tile values are multiplied by numerator / (A + offset + B).",
+    "minimum": 100,
+    "reach": 4,
+    "own_ratio": 2.0,
+    "own_offset": 10,
+    "enemy_ratio": 0.5,
+    "enemy_offset": 30,
+    "numerator": 3.0,
+    "offset": 2.0
+  },
+
+  "strong": {
+    "_comment": "0x6a2cc..0x6a44c, with the support factor: S = the hero's army rating with his skills (0x73d34), at least minimum. When S reaches rating and no other player's town (siege-rated garrison; neutral towns aside) or hero (army rating x hero_weight) beats S, tile values are multiplied by the best of them x share / S. Heroes and other players' towns keep their value.",
+    "minimum": 100,
+    "rating": 30000,
+    "hero_weight": 2.0,
+    "share": 0.75
+  },
+
+  "steps": {
+    "_comment": "Steps taken before planning again: trunc((land or sea) x (base - per_level x AI level)).",
+    "land": 5,
+    "sea": 15,
+    "base": 1.7,
+    "per_level": 0.1
+  },
+
+  "teammate_cell": -5000,
+  "_comment_teammate_cell": "0x71f5e: a teammate's cell in the planner's modes when the support factor is not in force (0 when it is), at confidence 0.",
+  "route_ends": ["resource", "town", "castle", "chest", "campfire", "artifact", "sign",
+    "buoy", "skeleton", "fountain", "obelisk", "statue", "stone_liths", "whirlpool"],
+  "_comment_route_ends": "0x86ed0..0x86f49: object types (classes 0x1d, 0x28, 6, 8, 0x30, 2, 3, 4, 9, 0x1b, 0x24, 0x2b, and the genie lamp 0xb) that end a planning route; the planner walks on through any other object cell. Stone liths and whirlpools (0x29, 0x2c) are their own case in the original (passed like a monster); they stay route ends here.",
+
+  "potential": {
+    "_comment": "0x73410: from the location, a route search to reach (no monster passed). Sum over reached interactive tiles of tile value / (cost + cost_offset), truncated as it goes; minus (near_cost - cost) x penalty / near_cost for each of the player's other heroes reached under near_cost, and (near_tiles - d) x penalty / near_tiles for each within near_tiles - 1 tiles (Manhattan) on the same land or water; x scale, at most cap. Mode 1, the night stop's (0x6ab0a), reaches night_reach and counts only heroes.",
+    "reach": 36,
+    "night_reach": 60,
+    "cost_offset": 2,
+    "near_cost": 32,
+    "near_tiles": 9,
+    "penalty": 1250,
+    "scale": 1.25,
+    "cap": 32000
+  },
+
+  "route_value": {
+    "_comment": "RV = trunc(V / (f + v_offset)) + trunc(p_weight x P / (f + p_offset)), f from d = route cost / max move: the first bracket with d above 'above' gives d x factor, d itself at most 1; at sea f = 0.5 + 0.5 d and a water target adds sea_bonus. Then RV x (noise_base + random(noise_lo..noise_hi)) / 100. The previous destination gets x dest_factor, + 1 when more than dest_near tiles away. A teammate's tile or a tile already targeted by another living teammate hero (unless it is a town or enemy hero, heroes.exe 0x6a902..0x6a96f) scores teammate (-2000), a tile that is no candidate unsuitable.",
+    "brackets": [
+      {"above": 5, "factor": 3.0},
+      {"above": 4, "factor": 2.5},
+      {"above": 3, "factor": 2.0},
+      {"above": 2, "factor": 1.7},
+      {"above": 1.5, "factor": 1.4},
+      {"above": 1, "factor": 1.2}
+    ],
+    "sea_base": 0.5,
+    "sea_per_day": 0.5,
+    "sea_bonus": 40,
+    "v_offset": 0.2,
+    "p_weight": 2,
+    "p_offset": 1,
+    "noise_base": 75,
+    "noise_lo": 1,
+    "noise_hi": 50,
+    "dest_factor": 1.5,
+    "dest_near": 3,
+    "teammate": -2000,
+    "unsuitable": -100,
+    "_comment_zone": "0x6ab68..0x6ac45: a monster guarding the candidate cell (0x84138) adds its value when negative and its confidence always, except on these cell classes (switch at 0x6ab95: 2, 4, 6, 8, 9, 11, 26, 27, 29, 36, 43, 48). Class 43 (B8 171) has no type here.",
+    "zone_skip_types": ["sign", "skeleton", "chest", "campfire", "fountain", "ancient_lamp", "genie_lamp", "stack", "obelisk", "resource", "statue", "artifact"]
+  },
+
+  "desire": {
+    "_comment": "An enemy hero's attack desire (data 0x2f58c): 100 when P > sure, else P x the factor of the first row whose 'above' P exceeds, at most 100. A reachable hero below 100 lowers a potential's confidence.",
+    "sure": 0.75,
+    "rows": [
+      {"above": 0.5, "factor": 136},
+      {"above": 0.4, "factor": 130},
+      {"above": 0.3, "factor": 125},
+      {"above": 0.2, "factor": 113}
+    ],
+    "base": 100,
+    "far_share": 0.2,
+    "near_cost": 14,
+    "near_offset": 10,
+    "computer_offset": 20
+  },
+
+  "adjacent": {
+    "_comment": "0x6b71d (GOODADJ): neighbours in this order (dx, dy: N, NE, E, SE, S, SW, W, NW, data 0x1f828); one worth more than floor at confidence above confidence becomes the next step. Stone liths and whirlpools never, and nothing while standing on liths.",
+    "directions": [[0, -1], [1, -1], [1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1]],
+    "floor": 100,
+    "confidence": 80,
+    "skip_types": ["stone_liths", "whirlpool"],
+    "sea_never": ["buoy"],
+    "_sea_comment": "0xa89f2 at sea (context byte +0x163 = 4): a water cell only; never a buoy (class 3) or a walk-on pickup (classes 2, 4, 6, 8, 9, 11, 26, 28, 29, 36, 43, 48); another hero only when he sails too; anything else, such as a shipwreck, by the ordinary step rule."
+  },
+
+  "liths": {
+    "_comment": "0x730d5: a stone lith or whirlpool is worth the best potential at another of its kind more than far tiles away x share, less the potential at the hero's tile and cost; -cost when that is no gain (none = no other one). They count 0 inside that sum (data 0x1e454).",
+    "types": ["stone_liths", "whirlpool"],
+    "far": 4,
+    "share": 0.85,
+    "cost": 200,
+    "none": -9999
+  },
+
+  "dimension_door": {
+    "_comment": "0x6b544: with the spell known and at least min_points movement left, jump to the farthest route tile within reach tiles on each axis that holds no object (the last tile excluded) when it is more than min_steps steps along; costs cost movement points (all of them below that) and a charge, then plan again.",
+    "min_points": 4,
+    "reach": 7,
+    "min_steps": 4,
+    "cost": 12
+  },
+
+  "naval_fallback": {
+    "_source": "heroes.exe 0x6b13d..0x6b26c; the coast record is 0x746d8's evaluate mode (0x74707..0x7486c).",
+    "_comment": "Valuing an own town with no hero inside records the nearest (Manhattan from the hero) town with a shipyard, else the nearest castle whose launch cell (gate + (-1, +1)) is water. When the best route value is below below, the day is above after_day, one of those was recorded and no boat was valued, the hero goes to it at route value rv. A town without a shipyard needs wood + wood_days x daily wood income of at least wood_coast and files a shipyard request (unless another town already holds one); with a shipyard wood_shipyard is enough. Either way it files a boat request and stamps the day; a buy follows (0x6b26f).",
+    "below": 75,
+    "after_day": 3,
+    "rv": 123,
+    "wood_days": 6,
+    "wood_coast": 30,
+    "wood_shipyard": 10
+  },
+  "dig": {
+    "_source": "heroes.exe 0x76db4 / 0x76fd0 (guess), 0x73259 (tile value), 0x6a8b7 and 0x6ac4e (candidate and its tile term), 0x6a619 and 0x6bae4 (digging).",
+    "_comment": "With n of the 48 puzzle pieces revealed and an Ultimate Artifact still buried, confidence = (n - min_pieces) x per_piece as a signed byte (0 below min_pieces). With that percent chance the guess is the right tile; otherwise a tile offset by -3..3 (never 0) on each axis, on clear land and not dug before, up to tries tries, then the right tile. The guess is a planner candidate, worth (confidence - above) x value / 100 when confidence is above above. A hero there with full movement digs; one who arrives with less waits for the next day.",
+    "min_pieces": 11,
+    "per_piece": 4,
+    "pieces": 48,
+    "tries": 200,
+    "above": 15,
+    "value": 16200
+  },
+  "revisit_limit": 30
+}

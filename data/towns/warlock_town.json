@@ -1,0 +1,17 @@
+{
+  "name": "Dragon's Fang",
+  "background": "townbkg3.png",
+  "crest_class": 3,
+  "castle_dir": "mtncast",
+  "tent_dir": "mtntent",
+  "layout": [
+    { "dir": "mtncast" },
+    { "dir": "mtn_d4", "unit": "hydra" },
+    { "dir": "mtn_d3", "unit": "minotaur" },
+    { "dir": "mtn_d2", "unit": "griffin" },
+    { "dir": "mtn_d5", "unit": "dragon" },
+    { "dir": "mtn_d1", "unit": "gargoyle" },
+    { "dir": "mtn_d0", "unit": "centaur" },
+    { "dir": "mtntent" }
+  ]
+}

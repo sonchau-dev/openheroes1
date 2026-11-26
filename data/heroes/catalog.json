@@ -1,0 +1,67 @@
+{
+  "_comment_short_names": "Short name of each of the 36 recruitable heroes. heroes.exe stores 72 strings at 0x10f8ca: full name then short name per hero (KB heroes.md 4.2, KB strings.md 1). The save record keeps both: 13 bytes full, 9 bytes short (KB save-format.md 4). The adventure-map status window draws the SHORT name.",
+  "short_names": {
+    "Lord Kilburn": "Kilburn",
+    "Lord Haart": "Haart",
+    "Sir Gallant": "Gallant",
+    "Arturius": "Arturius",
+    "Tyro": "Tyro",
+    "Maximus": "Maximus",
+    "Ector": "Ector",
+    "Dimitri": "Dimitri",
+    "Ambrose": "Ambrose",
+    "Thundax": "Thundax",
+    "Ergon": "Ergon",
+    "Kelzen": "Kelzen",
+    "Tsabu": "Tsabu",
+    "Crag Hack": "Crag",
+    "Jojosh": "Jojosh",
+    "Atlas": "Atlas",
+    "Yog": "Yog",
+    "Antoine": "Antoine",
+    "Ariel": "Ariel",
+    "Vatawna": "Vatawna",
+    "Carlawn": "Carlawn",
+    "Rebecca": "Rebecca",
+    "Luna": "Luna",
+    "Astra": "Astra",
+    "Natasha": "Natasha",
+    "Gem": "Gem",
+    "Troyan": "Troyan",
+    "Agar": "Agar",
+    "Crodo": "Crodo",
+    "Falagar": "Falagar",
+    "Barok": "Barok",
+    "Arie": "Arie",
+    "Kastore": "Kastore",
+    "Sandro": "Sandro",
+    "Wrathmont": "Wrath",
+    "Vesper": "Vesper"
+  },
+  "classes": [
+    {
+      "id": "knight", "faction": 0, "attack": 1, "defense": 2, "spell_power": 1, "knowledge": 1,
+      "experience": [40, 90], "spellbook": false, "morale": 1, "sight_bonus": 0,
+      "army": [["peasant", 30, 50], ["archer", 0, 3, 5]],
+      "heroes": ["Lord Kilburn", "Lord Haart", "Sir Gallant", "Arturius", "Tyro", "Maximus", "Ector", "Dimitri", "Ambrose"]
+    },
+    {
+      "id": "barbarian", "faction": 1, "attack": 2, "defense": 1, "spell_power": 1, "knowledge": 1,
+      "experience": [40, 90], "spellbook": false, "morale": 0, "sight_bonus": 0,
+      "army": [["goblin", 15, 25], ["orc", 0, 3, 5]],
+      "heroes": ["Thundax", "Ergon", "Kelzen", "Tsabu", "Crag Hack", "Jojosh", "Atlas", "Yog", "Antoine"]
+    },
+    {
+      "id": "sorceress", "faction": 2, "attack": 0, "defense": 0, "spell_power": 2, "knowledge": 3,
+      "experience": [40, 90], "spellbook": true, "morale": 0, "sight_bonus": 0,
+      "army": [["sprite", 10, 20], ["dwarf", 0, 2, 4]],
+      "heroes": ["Ariel", "Vatawna", "Carlawn", "Rebecca", "Luna", "Astra", "Natasha", "Gem", "Troyan"]
+    },
+    {
+      "id": "warlock", "faction": 3, "attack": 0, "defense": 0, "spell_power": 3, "knowledge": 2,
+      "experience": [40, 90], "spellbook": true, "morale": 0, "sight_bonus": 2,
+      "army": [["centaur", 6, 10], ["gargoyle", 0, 2, 4]],
+      "heroes": ["Agar", "Crodo", "Falagar", "Barok", "Arie", "Kastore", "Sandro", "Wrathmont", "Vesper"]
+    }
+  ]
+}

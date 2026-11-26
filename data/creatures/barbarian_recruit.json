@@ -1,0 +1,8 @@
+{
+  "goblin":  { "cost": 40,  "growth": 10 },
+  "orc":     { "cost": 140, "growth": 8 },
+  "wolf":    { "cost": 200, "growth": 5 },
+  "ogre":    { "cost": 300, "growth": 4 },
+  "troll":   { "cost": 600, "growth": 3 },
+  "cyclops": { "cost": 750, "growth": 2, "resource": "crystal", "resource_cost": 1 }
+}

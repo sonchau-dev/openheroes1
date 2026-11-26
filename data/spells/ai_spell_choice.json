@@ -1,0 +1,28 @@
+{
+  "_source": "Retail heroes.exe (md5 a7daabf9a316d271962ca19f89b80335), AI spell chooser 0xc9c10, scorer 0xc9ddb, effect value 0xca23a, damage value 0xca8fc, cure/dispel 0xca616, resurrect 0xca806. Transcribed 2026-09-26; rule written up in data/knowledge_base/auto-combat-ai.md section 7.",
+  "_creature_value": "Per-creature value V, creature table field at data 0x1fcaa + native_id * 0x1c. A stack is worth count * V.",
+  "creature_value": {
+    "peasant": 18, "archer": 256, "pikeman": 399, "swordsman": 768, "cavalry": 1274, "paladin": 4014,
+    "goblin": 57, "orc": 241, "wolf": 482, "ogre": 902, "troll": 2627, "cyclops": 5721,
+    "sprite": 74, "dwarf": 380, "elf": 567, "druid": 1019, "unicorn": 1866, "phoenix": 11177,
+    "centaur": 94, "gargoyle": 379, "griffin": 739, "minotaur": 1248, "hydra": 3142, "dragon": 45258,
+    "rogue": 112, "nomad": 544, "ghost": 1263, "genie": 3831
+  },
+  "_effect_weight": "E(stack, spell) = weight * count * V (data 0x1beb4..0x1bed4). Slow is per step of speed above 1; Haste is 0.33 at speed 1 and half that at speed 2.",
+  "effect_weight": {
+    "slow": -0.11, "blind": -0.6, "curse": -0.18, "berserk": -0.6, "paralyze": -0.7,
+    "haste": 0.33, "bless": 0.18, "shield": 0.24, "anti_magic": 0.15
+  },
+  "_resistance": "The exe scales a Dwarf stack's negative effect values and the damage it would take by 0.75 (data 0x32d4, 0x32dc). Read here as 1 - magic_resist from data/creatures/stats.json, which is 0.25 for Dwarves only.",
+  "slow_flyer_factor": 3.0,
+  "haste_medium_factor": 0.5,
+  "_spell_power_shift": "Buff and debuff scores are shifted right by this many bits at the caster's spell power; 0 from 3 up.",
+  "spell_power_shift": {"1": 2, "2": 1},
+  "_wound_factor": "A leftover wound counts this share of a hit point in damage scores (data 0x32e4).",
+  "wound_factor": 0.75,
+  "_finishing_blow": "Score of a damage spell that wipes out a side while the caster loses nothing: base minus the per-spell word at data 0x1f17c + 2 * native spell id.",
+  "finishing_blow_base": 100000000,
+  "finishing_blow_cost": {
+    "lightning_bolt": 350, "fireball": 500, "starfall": 700, "meteor_shower": 1700, "armageddon": 2000
+  }
+}

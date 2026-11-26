@@ -1,0 +1,208 @@
+{
+  "default": {
+    "idle": {
+      "source": "std",
+      "frames": [
+        "0001.png"
+      ],
+      "shadow": "shadow_gnd_standing.png",
+      "fps": 8,
+      "loop": true
+    },
+    "wince": {
+      "source": "std",
+      "frames": [
+        "0002.png"
+      ],
+      "shadow": "shadow_gnd_death.png",
+      "fps": 7,
+      "loop": false,
+      "return_to": "idle"
+    },
+    "attack_up": {
+      "source": "std",
+      "frames": [
+        "composite_atk_up.png"
+      ],
+      "shadow": "shadow_gnd_atk_up.png",
+      "fps": 8,
+      "loop": false,
+      "return_to": "idle"
+    },
+    "attack_across": {
+      "source": "std",
+      "frames": [
+        "composite_atk_across.png"
+      ],
+      "shadow": "shadow_gnd_atk_across.png",
+      "fps": 8,
+      "loop": false,
+      "return_to": "idle"
+    },
+    "attack_down": {
+      "source": "std",
+      "frames": [
+        "composite_atk_down.png"
+      ],
+      "shadow": "shadow_gnd_atk_down.png",
+      "fps": 8,
+      "loop": false,
+      "return_to": "idle"
+    },
+    "walk": {
+      "source": "wlk",
+      "frames": [
+        "0000.png",
+        "0001.png",
+        "0002.png",
+        "0003.png",
+        "0004.png",
+        "0005.png"
+      ],
+      "shadow": null,
+      "fps": 12,
+      "loop": true,
+      "anchor_x": true,
+      "shadows": [
+        "0006.png",
+        "0007.png",
+        "0008.png",
+        "0009.png",
+        "0010.png",
+        "0011.png"
+      ]
+    },
+    "wip": {
+      "source": "wip",
+      "frames": [
+        "0000.png",
+        "0001.png",
+        "0002.png",
+        "0003.png",
+        "0004.png",
+        "0005.png"
+      ],
+      "shadow": null,
+      "fps": 10,
+      "loop": true
+    },
+    "walk_in_place": {
+      "source": "wip",
+      "frames": [
+        "0000.png",
+        "0001.png",
+        "0002.png",
+        "0003.png",
+        "0004.png",
+        "0005.png"
+      ],
+      "shadow": null,
+      "fps": 10,
+      "loop": true
+    }
+  },
+  "ranged_default": {
+      "shoot": {
+        "source": "atk",
+        "frames": [
+          "composite_atk_F1.png",
+          "composite_atk_F2.png",
+          "composite_atk_F3.png",
+          "composite_atk_F4.png"
+        ],
+        "shadows": [
+          "0010.png",
+          "0011.png",
+          "0012.png",
+          "0013.png"
+        ],
+        "fps": 12,
+        "loop": false,
+        "return_to": "idle"
+      }
+  },
+  "overrides": {
+    "cyclops": {
+      "attack_up": {
+        "source": "std",
+        "frames": ["composite_atk0_up.png", "composite_atk1_up.png", "composite_atk2_up.png"],
+        "shadows": ["shadow_gnd_atk0_up.png", "shadow_gnd_atk1_up.png", "shadow_gnd_atk2_up.png"],
+        "fps": 8, "loop": false, "return_to": "idle"
+      },
+      "attack_across": {
+        "source": "std",
+        "frames": ["composite_atk0_across.png", "composite_atk1_across.png", "composite_atk2_across.png"],
+        "shadows": ["shadow_gnd_atk0_across.png", "shadow_gnd_atk1_across.png", "shadow_gnd_atk2_across.png"],
+        "fps": 8, "loop": false, "return_to": "idle"
+      },
+      "attack_down": {
+        "source": "std",
+        "frames": ["composite_atk0_down.png", "composite_atk1_down.png", "composite_atk2_down.png"],
+        "shadows": ["shadow_gnd_atk0_down.png", "shadow_gnd_atk1_down.png", "shadow_gnd_atk2_down.png"],
+        "fps": 8, "loop": false, "return_to": "idle"
+      }
+    },
+    "phoenix": {
+      "attack_up": {
+        "source": "std",
+        "frames": ["composite_atk0_up.png", "composite_atk1_up.png", "composite_atk2_up.png"],
+        "shadows": ["shadow_gnd_atk0_up.png", "shadow_gnd_atk1_up.png", "shadow_gnd_atk2_up.png"],
+        "fps": 8, "loop": false, "return_to": "idle"
+      },
+      "attack_across": {
+        "source": "std",
+        "frames": ["composite_atk0_across.png", "composite_atk1_across.png", "composite_atk2_across.png"],
+        "shadows": ["shadow_gnd_atk0_across.png", "shadow_gnd_atk1_across.png", "shadow_gnd_atk2_across.png"],
+        "fps": 8, "loop": false, "return_to": "idle"
+      },
+      "attack_down": {
+        "source": "std",
+        "frames": ["composite_atk0_down.png", "composite_atk1_down.png", "composite_atk2_down.png"],
+        "shadows": ["shadow_gnd_atk0_down.png", "shadow_gnd_atk1_down.png", "shadow_gnd_atk2_down.png"],
+        "fps": 8, "loop": false, "return_to": "idle"
+      }
+    },
+    "hydra": {
+      "idle": {
+        "source": "std", "frames": ["0001.png"], "shadow": "shadow_gnd_F9.png",
+        "fps": 8, "loop": true
+      },
+      "wince": {
+        "source": "std", "frames": ["0002.png"], "shadow": "shadow_gnd_standing.png",
+        "fps": 7, "loop": false, "return_to": "idle"
+      },
+      "attack_up": {
+        "source": "std", "frames": ["0007.png"], "shadow": "shadow_gnd_atk_up.png",
+        "fps": 8, "loop": false, "return_to": "idle"
+      },
+      "attack_across": {
+        "source": "std", "frames": ["0005.png"], "shadow": "shadow_gnd_atk2.png",
+        "fps": 8, "loop": false, "return_to": "idle"
+      },
+      "attack_down": {
+        "source": "std", "frames": ["0006.png"], "shadow": "shadow_gnd_F14.png",
+        "fps": 8, "loop": false, "return_to": "idle"
+      }
+    },
+    "dragon": {
+      "attack_up": {
+        "source": "std",
+        "frames": ["composite_atk0_up.png", "composite_atk1_up.png", "composite_atk2_up.png"],
+        "shadows": ["shadow_gnd_atk0_up.png", "shadow_gnd_atk1_up.png", "shadow_gnd_atk2_up.png"],
+        "fps": 8, "loop": false, "return_to": "idle"
+      },
+      "attack_across": {
+        "source": "std",
+        "frames": ["composite_atk0_across.png", "composite_atk1_across.png", "composite_atk2_across.png"],
+        "shadows": ["shadow_gnd_atk0_across.png", "shadow_gnd_atk1_across.png", "shadow_gnd_atk2_across.png"],
+        "fps": 8, "loop": false, "return_to": "idle"
+      },
+      "attack_down": {
+        "source": "std",
+        "frames": ["composite_atk0_down.png", "composite_atk1_down.png", "composite_atk2_down.png"],
+        "shadows": ["shadow_gnd_atk0_down.png", "shadow_gnd_atk1_down.png", "shadow_gnd_atk2_down.png"],
+        "fps": 8, "loop": false, "return_to": "idle"
+      }
+    }
+  }
+}

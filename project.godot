@@ -1,0 +1,65 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="HOMM1 Godot"
+run/main_scene="res://src/menu/main_menu.tscn"
+config/icon="res://icon.png"
+; The Android back button would otherwise quit without saving.
+config/quit_on_go_back=false
+config/features=PackedStringArray("4.7", "Forward Plus")
+
+[autoload]
+
+Game="*res://src/game/game.gd"
+Net="*res://src/net/net_session.gd"
+WindowFit="*res://src/game/window_fit.gd"
+TouchInput="*res://src/game/touch_input.gd"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=480
+window/size/window_width_override=0
+window/size/window_height_override=0
+window/size/resizable=true
+; Linux starts fixed-size: a tiling desktop tiles a resizable window at
+; whatever size its layout has, and floats a fixed one at the size it asks for.
+; WindowFit makes the window resizable again once it is on screen.
+window/size/resizable.linuxbsd=false
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+window/stretch/scale_mode="fractional"
+window/handheld/orientation=4
+
+[importer_defaults]
+
+; HOMM1 sounds are 8-bit 22050 Hz mono already, so Godot's default lossy QOA
+; compression only adds artefacts to audio that is small to begin with.
+wav={
+"compress/mode": 0
+}
+
+[rendering]
+
+; Android: the Compatibility (OpenGL ES 3) renderer runs on every device that
+; runs Godot 4, and a 640x480 pixel-art game needs nothing more. Android
+; export also refuses to start until ETC2/ASTC import is on, even though no
+; texture here is VRAM-compressed.
+renderer/rendering_method.mobile="gl_compatibility"
+textures/canvas_textures/default_texture_filter=0
+; Black, not the default gray, shows while a scene builds (the map takes seconds on Android).
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+textures/vram_compression/import_etc2_astc=true
+
+[input_devices]
+
+pointing/emulate_mouse_from_touch.mobile=false

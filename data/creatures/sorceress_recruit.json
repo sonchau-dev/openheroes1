@@ -1,0 +1,8 @@
+{
+  "sprite":  { "cost": 50,   "growth": 8 },
+  "dwarf":   { "cost": 200,  "growth": 6 },
+  "elf":     { "cost": 250,  "growth": 4 },
+  "druid":   { "cost": 350,  "growth": 3 },
+  "unicorn": { "cost": 500,  "growth": 2 },
+  "phoenix": { "cost": 1500, "growth": 1, "resource": "mercury", "resource_cost": 1 }
+}

@@ -1,0 +1,34 @@
+{
+  "peasant":   { "std": "peasant.std",  "wlk": "peasant.wlk",  "wip": "peasant.wip" },
+  "archer":    { "std": "archer.std",   "wlk": "archer.wlk",   "wip": "archer.wip",   "atk": "archer.atk" },
+  "pikeman":   { "std": "pikeman.std",  "wlk": "pikeman.wlk",  "wip": "pikeman.wip" },
+  "swordsman": { "std": "swrdsman.std", "wlk": "swrdsman.wlk", "wip": "swrdsman.wip" },
+  "cavalry":   { "std": "cavalry.std",  "wlk": "cavalry.wlk",  "wip": "cavalry.wip" },
+  "paladin":   { "std": "paladin.std",   "wlk": "paladin.wlk",  "wip": "paladin.wip" },
+
+  "goblin":  { "std": "goblin.std",  "wlk": "goblin.wlk",  "wip": "goblin.wip" },
+  "orc":     { "std": "orc.std",     "wlk": "orc.wlk",     "wip": "orc.wip",     "atk": "orc.atk" },
+  "wolf":    { "std": "wolf.std",    "wlk": "wolf.wlk",    "wip": "wolf.wip" },
+  "ogre":    { "std": "ogre.std",    "wlk": "ogre.wlk",    "wip": "ogre.wip" },
+  "troll":   { "std": "troll.std",   "wlk": "troll.wlk",   "wip": "troll.wip",   "atk": "troll.atk" },
+  "cyclops": { "std": "cyclops.std", "wlk": "cyclops.wlk", "wip": "cyclops.wip" },
+
+  "sprite":  { "std": "sprite.std",  "wlk": "sprite.wlk" },
+  "dwarf":   { "std": "dwarf.std",   "wlk": "dwarf.wlk",   "wip": "dwarf.wip" },
+  "elf":     { "std": "elf.std",     "wlk": "elf.wlk",     "wip": "elf.wip",     "atk": "elf.atk" },
+  "druid":   { "std": "druid.std",   "wlk": "druid.wlk",   "wip": "druid.wip",   "atk": "druid.atk" },
+  "unicorn": { "std": "unicorn.std", "wlk": "unicorn.wlk", "wip": "unicorn.wip" },
+  "phoenix": { "std": "phoenix.std", "wlk": "phoenix.wlk" },
+
+  "centaur":  { "std": "centaur.std",  "wlk": "centaur.wlk",  "wip": "centaur.wip", "atk": "centaur.atk" },
+  "gargoyle": { "std": "gargoyle.std", "wlk": "gargoyle.wlk" },
+  "griffin":  { "std": "griffin.std",  "wlk": "griffin.wlk" },
+  "minotaur": { "std": "minotaur.std", "wlk": "minotaur.wlk", "wip": "minotaur.wip" },
+  "hydra":    { "std": "hydra.std",    "wlk": "hydra.wlk",    "wip": "hydra.wip" },
+  "dragon":   { "std": "dragon.std",   "wlk": "dragon.wlk" },
+
+  "rogue": { "std": "rogue.std", "wlk": "rogue.wlk", "wip": "rogue.wip" },
+  "nomad": { "std": "nomad.std", "wlk": "nomad.wlk", "wip": "nomad.wip" },
+  "ghost": { "std": "ghost.std", "wlk": "ghost.wlk" },
+  "genie": { "std": "genie.std", "wlk": "genie.wlk" }
+}

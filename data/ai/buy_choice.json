@@ -1,0 +1,162 @@
+{
+  "_source": "heroes.exe 0x6739c, the computer player's buy routine, decoded 2026-10-03 (data/knowledge_base/research/ai-planner-decodes.md, 'Buy choice'). Checked against the original's own AI log (KB.LOG, day 1 of a Claw game) and the autosave of the same game: every building, creature and Warlock tavern-hero Raw BC matches. Code addresses are file offsets, data addresses data-object offsets.",
+  "_comment": "Each round every town offers its best building, best creature stack and best tavern hero; the best score over all towns is bought and the round repeats. Scores are benefit per gold-equivalent cost.",
+
+  "player_weights": {
+    "_comment": "Set at the start of each AI turn (0x69502). ad, b1 and b5 are the player floats at +0xad, +0xb1, +0xb5; b5 is 0.3 times the factor of the first day_factor row whose 'before' exceeds the day.",
+    "ad": 0.4,
+    "b1": 0.3,
+    "b5": 0.3,
+    "day_factor": [
+      {"before": 5, "factor": 1.6},
+      {"before": 10, "factor": 1.4},
+      {"before": 20, "factor": 1.2},
+      {"before": 30, "factor": 1.0},
+      {"before": 999999, "factor": 0.8}
+    ]
+  },
+
+  "resource_worth": {
+    "_comment": "0x73ade / 0x69625: stock[r] = trunc((amount + income_days x income_weight x daily income) x base); mean = sum(stock) / 7 (integer); worth[r] = base / (ratio_weight x stock / mean + ratio_offset). Gold is worth about 0.6 on day 1.",
+    "base": {"wood": 250, "mercury": 250, "ore": 200, "sulfur": 250, "crystal": 250, "gems": 250, "gold": 1},
+    "income_days": 5,
+    "income_weight": 0.7,
+    "ratio_weight": 0.5,
+    "ratio_offset": 0.5
+  },
+
+  "army_value": {
+    "_comment": "Player float +0xf9 = (gold + daily gold income) / (plain rating of every hero army and garrison + rating_offset) + b1.",
+    "rating_offset": 1000
+  },
+
+  "affordability": {
+    "_comment": "0x73c74: days = (cost - stock) / income + 1 for each short resource (no_income_days without income); factor = max(0, 1 - per_day x the largest).",
+    "per_day": 0.15,
+    "no_income_days": 99
+  },
+
+  "late_term": {
+    "_comment": "The stub 0x71078 always outputs 0.09. Buildings get x (1 - 3 x 0.09) = 0.73, creatures x (0.09 + 0.96)^3.",
+    "value": 0.09,
+    "building_count": 3,
+    "creature_base": 0.96,
+    "creature_power": 3
+  },
+
+  "noise": {
+    "_comment": "RandBC = Raw x (base + random(lo..hi)) / 100 ranks options inside a town; each town's best of a kind is then scored with Raw x (100 - random(0..candidate_max)) / 100.",
+    "building": {"base": 95, "lo": 1, "hi": 5},
+    "creature": {"base": 90, "lo": 1, "hi": 10},
+    "hero": {"base": 90, "lo": 1, "hi": 10},
+    "candidate_max": 10,
+    "empty": -99.0
+  },
+
+  "stop_below": 0.02,
+  "min_gold": 200,
+
+  "buildings": {
+    "_comment": "Base values (0xd0370). The Mage Guild is valued and priced at its level byte (town +0x18, built levels counted from 0, so 0 both without a guild and with one level): the value at that index less the one below. The computer offers it while the byte is below guild_max_byte, so level 4 is the last it builds. Dwellings are listed by tier.",
+    "mage_guild": [4000, 6500, 8500, 10500],
+    "guild_max_byte": 3,
+    "thieves_guild": 1500,
+    "tavern": 500,
+    "shipyard": 2000,
+    "well": 3000,
+    "castle": 12000,
+    "dwellings": {
+      "knight": [858, 2225, 2816, 7385, 13754, 29785],
+      "barbarian": [1802, 2615, 3414, 6967, 12212, 38141],
+      "sorceress": [1684, 2256, 3736, 7213, 15181, 27684],
+      "warlock": [1956, 2607, 3869, 7510, 16002, 111967]
+    }
+  },
+
+  "building_factors": {
+    "_comment": "n = dwellings built in the town. mage_guild: x (2 ad + 0.33) x (1.33 - 0.33 x the player's guilds at level 0, a count that is always 0). tavern: x garrison rating / tavern_rating. well: x (ad + 0.66) x (2 b1 + 0.33) x (0.66 + 0.33 n). castle: x (2 ad + 0.33) x (1.6 - 0.2 n). dwelling: x (ad + 0.66) x (2 b1 + 0.33) x (1 - 0.05 x the player's towns of this faction that have it), x (1.66 - 0.33 n) below the highest built tier, x 1.1 with a well, 0 when a built dwelling with stock holds a creature whose rank x 1.2 exceeds this one's.",
+    "two_ad_offset": 0.33,
+    "ad_offset": 0.66,
+    "b1_offset": 0.33,
+    "guild_base": 1.33,
+    "guild_per_town": 0.33,
+    "tavern_rating": 3000,
+    "well_base": 0.66,
+    "well_per_dwelling": 0.33,
+    "castle_base": 1.6,
+    "castle_per_dwelling": 0.2,
+    "dwelling_per_town": 0.05,
+    "lower_tier_base": 1.66,
+    "lower_tier_per_dwelling": 0.33,
+    "well_bonus": 1.1,
+    "rank_margin": 1.2
+  },
+
+  "creature_rank": {
+    "_comment": "Byte +4 of each creature record (data 0x1fcaa + 28 x id). Only used to compare dwellings.",
+    "peasant": 9, "archer": 17, "pikeman": 20, "swordsman": 31, "cavalry": 42, "paladin": 60,
+    "goblin": 14, "orc": 17, "wolf": 24, "ogre": 30, "troll": 44, "cyclops": 57,
+    "sprite": 15, "dwarf": 19, "elf": 23, "druid": 29, "unicorn": 37, "phoenix": 64,
+    "centaur": 16, "gargoyle": 19, "griffin": 25, "minotaur": 31, "hydra": 43, "dragon": 139,
+    "rogue": 22, "nomad": 27, "ghost": 59, "genie": 43
+  },
+
+  "creatures": {
+    "_comment": "n = gold / unit gold cost, halved above 1, capped at the stock, 0 unless at least min_count. B = n x rating x f9; with a hero in the town x hero_bonus, x class_bonus more when the creature's faction is the hero's class, x (heavy_base - heavy_per_stack x heavy stacks in the hero's army) for heavy units, x (b1 + b1_offset); heavy units also x (heavy_base - heavy_per_stack x heavy stacks in the garrison). Every step truncates.",
+    "min_count": 2,
+    "hero_bonus": 1.1,
+    "class_bonus": 1.1,
+    "heavy_units": ["cyclops", "phoenix", "dragon"],
+    "_comment_heavy": "Creature record byte +0x19 bit 8.",
+    "heavy_base": 1.18,
+    "heavy_per_stack": 0.06,
+    "b1_offset": 0.66,
+    "garrison_weight_castle": 10,
+    "garrison_weight_town": 7,
+    "garrison_offset": 400,
+    "share_divisor": 3,
+    "share_offset": 0.66,
+    "_comment_share": "Per round: b = garrison rating + 400 per town, m = trunc(sum b / sum w) with w 10 for a castle and 7 for a town, a = w x m + 400. A town's creature score is x (a / b / 3 + 0.66)."
+  },
+
+  "heroes": {
+    "_comment": "Tavern heroes, only while the player has fewer heroes than the cap and the town has a castle. V = base + XP + XP / 2 + artifact values; x (1 + b5 - b1); x class_bonus when the hero's class pairs with the town (class_bonus_town); + location potential (0x73410) - potential_offset; x affordability. A hero on the town's gate takes gate_penalty off the score.",
+    "base": 2000,
+    "class_bonus": 1.1,
+    "class_bonus_town": {"knight": "knight", "barbarian": "sorceress", "sorceress": "barbarian", "warlock": "warlock"},
+    "_comment_class": "The exe compares the hero's class byte (Knight, Barbarian, Sorceress, Warlock) with the town's faction byte (Knight, Sorceress, Barbarian, Warlock), so Barbarian and Sorceress cross. Day 1 of the log agrees: only this reading gives both tavern heroes of a town the same potential term.",
+    "potential_offset": 200,
+    "initial_hero_penalty": -1215,
+    "_comment_potential": "0x73410 at (0, 0): on Day 1 for side 1, the BSS cache is uninitialized (0); for sides 2 and 3 on Day 1, starting heroes have target (-1, -1) at Manhattan distance 2 from (0, 0), giving a crowding penalty of (9-2)*1250/9*1.25 = -1215. On Day 2+, all heroes are on the map (d >= 9 from (0, 0)), so potential is 0.",
+    "gate_penalty": 200,
+    "cap": 3,
+    "cap_two_players": 4,
+    "_comment_cap": "0x31ea4: 4 when byte 0x43e81 - byte 0x43e83 is 2, read as 'two players left'; inferred, not proven.",
+    "bonus_after_day": 5,
+    "income_add": 1250,
+    "add": 500,
+    "income_scale": 1500,
+    "scale": 1.3,
+    "_comment_bonus": "Before the turn's first hire, after bonus_after_day and when the score is positive: + add when gold income >= income_add and heroes < cap - 2, else x scale when income >= income_scale and heroes < cap - 1. Otherwise + add when the player has no hero."
+  },
+
+  "artifact_values": {
+    "_comment": "AI value of each artifact (data 0x1fb20 by native id). The spell book has none.",
+    "book_of_omniscience": 9000, "sword_of_power": 22000, "protective_cape": 18000, "rod_of_magic": 14000,
+    "arcane_necklace": 6000, "magic_bracelet": 4000, "mage_ring": 4000, "witch_broach": 5600,
+    "medal_of_valor": 1200, "medal_of_courage": 1200, "medal_of_honor": 1200, "medal_of_distinction": 1200,
+    "fizbin": -1200, "thunder_mace": 2000, "defender_gauntlet": 1800, "defender_helmet": 1800,
+    "giant_flail": 2000, "ballista": 1000, "invisible_shield": 3600, "dragon_sword": 5600,
+    "axe_of_power": 4000, "divine_armor": 5040, "minor_scroll": 2700, "major_scroll": 3900,
+    "mighty_scroll": 4950, "superior_scroll": 5850, "bottomless_sack": 7000, "bottomless_bag": 6000,
+    "bottomless_purse": 4000, "nomad_boots": 4500, "traveler_boots": 2250, "rabbit_foot": 1200,
+    "golden_horseshoe": 1200, "lucky_coin": 1200, "four_leaf_clover": 1200, "travelers_compass": 3500,
+    "sailors_astrolabe": 1500
+  },
+
+  "naval": {
+    "_comment": "Requests from the planner. An open shipyard request builds the shipyard when it can, else holds back shipyard_hold for the rest of the buy; a boat request buys a boat when the shipyard stands and boat_hold is there, else holds it back.",
+    "shipyard_hold": {"gold": 2000, "wood": 20},
+    "boat_hold": {"gold": 1000, "wood": 10}
+  }
+}

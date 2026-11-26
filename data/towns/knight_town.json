@@ -1,0 +1,17 @@
+{
+  "name": "Sorpigal",
+  "background": "townbkg0.png",
+  "crest_class": 0,
+  "castle_dir": "farmcast",
+  "tent_dir": "farmtent",
+  "layout": [
+    { "dir": "farmcast" },
+    { "dir": "farm_d4", "unit": "cavalry" },
+    { "dir": "farm_d3", "unit": "swordsman" },
+    { "dir": "farm_d2", "unit": "pikeman" },
+    { "dir": "farm_d5", "unit": "paladin" },
+    { "dir": "farm_d1", "unit": "archer" },
+    { "dir": "farm_d0", "unit": "peasant" },
+    { "dir": "farmtent" }
+  ]
+}

@@ -1,0 +1,880 @@
+{
+ "version": 3,
+ "name": "Skirmish 01",
+ "description": "A compact proving ground for two kingdoms.",
+ "map_difficulty": 0,
+ "size": 0,
+ "supported_human_counts": [
+  1
+ ],
+ "tile_size": 32,
+ "seed": 1337,
+ "players": [
+  {
+   "side": 0,
+   "human": true,
+   "heroes": [
+    [
+     5,
+     6
+    ]
+   ],
+   "color": 0
+  },
+  {
+   "side": 1,
+   "human": false,
+   "heroes": [
+    [
+     18,
+     13
+    ]
+   ],
+   "color": 1
+  }
+ ],
+ "tile_overrides": {},
+ "ultimate_artifact": {
+  "tile": [
+   15,
+   12
+  ],
+  "artifact": "sword_of_power"
+ },
+ "objects": [
+  {
+   "type": "town",
+   "tile": [
+    5,
+    6
+   ],
+   "town_type": 0,
+   "owner": 0,
+   "params": {
+    "name": "Bywatch"
+   },
+   "interaction_tiles": [
+    [
+     5,
+     6
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "town",
+   "tile": [
+    20,
+    11
+   ],
+   "town_type": 0,
+   "owner": 1,
+   "params": {
+    "name": "Nightshadow"
+   },
+   "interaction_tiles": [
+    [
+     20,
+     11
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "stack",
+   "tile": [
+    5,
+    3
+   ],
+   "army": [
+    [
+     "cavalry",
+     6
+    ],
+    [
+     "pikeman",
+     10
+    ]
+   ],
+   "interaction_tiles": [
+    [
+     5,
+     3
+    ]
+   ],
+   "entry": "all"
+  },
+  {
+   "type": "stack",
+   "tile": [
+    6,
+    8
+   ],
+   "army": [
+    [
+     "peasant",
+     20
+    ]
+   ],
+   "interaction_tiles": [
+    [
+     6,
+     8
+    ]
+   ],
+   "entry": "all"
+  },
+  {
+   "type": "mine",
+   "tile": [
+    1,
+    1
+   ],
+   "res": "wood",
+   "daily": 2,
+   "interaction_tiles": [
+    [
+     1,
+     2
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "mine",
+   "tile": [
+    1,
+    5
+   ],
+   "res": "ore",
+   "daily": 2,
+   "interaction_tiles": [
+    [
+     1,
+     6
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "mine",
+   "tile": [
+    1,
+    8
+   ],
+   "res": "mercury",
+   "daily": 2,
+   "interaction_tiles": [
+    [
+     1,
+     9
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "mine",
+   "tile": [
+    1,
+    11
+   ],
+   "res": "sulfur",
+   "daily": 1,
+   "interaction_tiles": [
+    [
+     1,
+     12
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "mine",
+   "tile": [
+    7,
+    1
+   ],
+   "res": "crystal",
+   "daily": 1,
+   "interaction_tiles": [
+    [
+     7,
+     2
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "mine",
+   "tile": [
+    7,
+    8
+   ],
+   "res": "gems",
+   "daily": 1,
+   "interaction_tiles": [
+    [
+     7,
+     9
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "mine",
+   "tile": [
+    7,
+    11
+   ],
+   "res": "gold",
+   "daily": 1,
+   "interaction_tiles": [
+    [
+     7,
+     12
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "shrine",
+   "tile": [
+    9,
+    9
+   ],
+   "interaction_tiles": [
+    [
+     9,
+     9
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "sign",
+   "tile": [
+    10,
+    6
+   ],
+   "interaction_tiles": [
+    [
+     10,
+     6
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "artifact",
+   "tile": [
+    9,
+    2
+   ],
+   "params": {
+    "artifact": "thunder_mace"
+   },
+   "interaction_tiles": [
+    [
+     9,
+     2
+    ]
+   ],
+   "entry": "all"
+  },
+  {
+   "type": "chest",
+   "tile": [
+    3,
+    10
+   ],
+   "interaction_tiles": [
+    [
+     3,
+     10
+    ]
+   ],
+   "entry": "all"
+  },
+  {
+   "type": "chest",
+   "tile": [
+    9,
+    7
+   ],
+   "interaction_tiles": [
+    [
+     9,
+     7
+    ]
+   ],
+   "entry": "all"
+  },
+  {
+   "type": "campfire",
+   "tile": [
+    6,
+    9
+   ],
+   "interaction_tiles": [
+    [
+     6,
+     9
+    ]
+   ],
+   "entry": "all"
+  },
+  {
+   "type": "gazebo",
+   "tile": [
+    10,
+    2
+   ],
+   "interaction_tiles": [
+    [
+     10,
+     2
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "fountain",
+   "tile": [
+    9,
+    8
+   ],
+   "interaction_tiles": [
+    [
+     9,
+     8
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "statue",
+   "tile": [
+    4,
+    8
+   ],
+   "interaction_tiles": [
+    [
+     4,
+     9
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "stone_liths",
+   "tile": [
+    8,
+    3
+   ],
+   "interaction_tiles": [
+    [
+     8,
+     3
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "stone_liths",
+   "tile": [
+    8,
+    7
+   ],
+   "interaction_tiles": [
+    [
+     8,
+     7
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "demon_cave",
+   "tile": [
+    17,
+    6
+   ],
+   "interaction_tiles": [
+    [
+     17,
+     6
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "dragon_city",
+   "tile": [
+    10,
+    4
+   ],
+   "guard": [
+    [
+     "dragon",
+     1
+    ],
+    [
+     "dragon",
+     1
+    ],
+    [
+     "dragon",
+     1
+    ],
+    [
+     "dragon",
+     1
+    ],
+    [
+     "dragon",
+     1
+    ]
+   ],
+   "interaction_tiles": [
+    [
+     10,
+     4
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "windmill",
+   "tile": [
+    5,
+    2
+   ],
+   "interaction_tiles": [
+    [
+     6,
+     2
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "obelisk",
+   "tile": [
+    10,
+    8
+   ],
+   "interaction_tiles": [
+    [
+     10,
+     8
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "obelisk",
+   "tile": [
+    4,
+    7
+   ],
+   "interaction_tiles": [
+    [
+     4,
+     7
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "obelisk",
+   "tile": [
+    3,
+    8
+   ],
+   "interaction_tiles": [
+    [
+     3,
+     8
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "oracle",
+   "tile": [
+    8,
+    6
+   ],
+   "interaction_tiles": [
+    [
+     8,
+     6
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "faerie_ring",
+   "tile": [
+    5,
+    10
+   ],
+   "interaction_tiles": [
+    [
+     4,
+     10
+    ],
+    [
+     5,
+     10
+    ]
+   ],
+   "entry": "horizontal"
+  },
+  {
+   "type": "wagon_camp",
+   "tile": [
+    12,
+    12
+   ],
+   "interaction_tiles": [
+    [
+     12,
+     12
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "desert_tent",
+   "tile": [
+    15,
+    14
+   ],
+   "interaction_tiles": [
+    [
+     15,
+     14
+    ]
+   ],
+   "entry": "building"
+  },
+  {
+   "type": "ancient_lamp",
+   "tile": [
+    9,
+    12
+   ],
+   "interaction_tiles": [
+    [
+     9,
+     12
+    ]
+   ],
+   "entry": "building"
+  }
+ ],
+ "terrain": [
+  "WWWWWWWWWWWWWWWWWWWWWWWW",
+  "WGGGGGGGGGGGGGGGGGGGGGGW",
+  "WGGGGGGGGGGGGGGGGGGGGGGW",
+  "WGGGGGGGGGGGGGGGGGGGGGGW",
+  "WGGGGGGGGGGGIIIGGGGGGGGW",
+  "WGGGGGGGGGGGIIIGGGGGGGGW",
+  "WGGGGGGGGGGGIIIGGGGGGGGW",
+  "WGGGGGGGGGGGGGGGGGGGGGGW",
+  "WGGGGGGGGGGGGGGGGGGGGGGW",
+  "WGGGGGGGGGGGTTTGGGGGGGGW",
+  "WGGGGGGGGGGGTTTGGGGGGGGW",
+  "WGGGGGGGGGGGGGGGGGGGGGGW",
+  "WGGGGGGGGGGGGGGGGGGGGGGW",
+  "WGGGGGGGGGGGGGGGGGGGGGGW",
+  "WGGSSGGGGGGGGGGGGGGGGGGW",
+  "WGGSSGGGGGGGGGGGGGGGGGGW",
+  "WGGGGGGGGGGGGGGGGGGGGGGW",
+  "WWWWWWWWWWWWWWWWWWWWWWWW"
+ ],
+ "render_parts": [],
+ "collision": [
+  {
+   "tile": [
+    1,
+    1
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    2,
+    1
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    7,
+    1
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    8,
+    1
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    2,
+    2
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    8,
+    2
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    1,
+    5
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    2,
+    5
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    3,
+    5
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    4,
+    5
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    5,
+    5
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    6,
+    5
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    2,
+    6
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    5,
+    6
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    7,
+    6
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    8,
+    6
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    18,
+    6
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    1,
+    8
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    2,
+    8
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    7,
+    8
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    8,
+    8
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    2,
+    9
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    8,
+    9
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    4,
+    10
+   ],
+   "tall": false
+  },
+  {
+   "tile": [
+    5,
+    10
+   ],
+   "tall": false
+  },
+  {
+   "tile": [
+    18,
+    10
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    19,
+    10
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    20,
+    10
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    21,
+    10
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    1,
+    11
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    2,
+    11
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    7,
+    11
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    8,
+    11
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    12,
+    11
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    13,
+    11
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    20,
+    11
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    2,
+    12
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    8,
+    12
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    11,
+    12
+   ],
+   "tall": true
+  },
+  {
+   "tile": [
+    13,
+    12
+   ],
+   "tall": true
+  }
+ ]
+}

@@ -1,0 +1,15 @@
+{
+  "_comment": "Shape -> relative tile offset within a terrain block (base+4..base+19). flip_h/flip_v transform the canonical art into the named orientation. variants = alternative offsets for the same shape (hash-picked). Bitmask semantics live in autotiler.gd; this file only maps shape names to art.",
+  "edge_top":        { "offset": 4, "variants": [4, 5, 6], "flip_h": false, "flip_v": false },
+  "edge_bottom":     { "offset": 4, "variants": [4, 5, 6], "flip_h": false, "flip_v": true },
+  "edge_left":       { "offset": 10, "variants": [10, 11, 12], "flip_h": true,  "flip_v": false },
+  "edge_right":      { "offset": 10, "variants": [10, 11, 12], "flip_h": false, "flip_v": false },
+  "corner_tr":       { "offset": 7, "variants": [7, 8, 9], "flip_h": false, "flip_v": false },
+  "corner_tl":       { "offset": 7, "variants": [7, 8, 9], "flip_h": true,  "flip_v": false },
+  "corner_br":       { "offset": 7, "variants": [7, 8, 9], "flip_h": false, "flip_v": true },
+  "corner_bl":       { "offset": 7, "variants": [7, 8, 9], "flip_h": true,  "flip_v": true },
+  "inner_tr":        { "offset": 13, "variants": [13, 14, 15], "flip_h": false, "flip_v": false },
+  "inner_tl":        { "offset": 13, "variants": [13, 14, 15], "flip_h": true,  "flip_v": false },
+  "inner_br":        { "offset": 13, "variants": [13, 14, 15], "flip_h": false, "flip_v": true },
+  "inner_bl":        { "offset": 13, "variants": [13, 14, 15], "flip_h": true,  "flip_v": true }
+}

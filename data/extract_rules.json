@@ -1,0 +1,192 @@
+{
+  "version": 1,
+  "source": "heroes.agg, retail DOS release, 679 entries, 19945814 bytes",
+  "note": "What the extractor has to be told because heroes.agg does not say it. Every frame header's high byte is zero, so there is no type field and no way to tell a monochrome frame from a colour one by looking. Verified in data/knowledge_base/research/agg-format-spec.md. This is not the sprite metadata the game reads; that is the generated spec.json.",
+
+  "required_entries": ["kb.pal"],
+
+  "mono": {
+    "whole_icn": ["losewalk", "font", "smalfont", "radar", "shadow32"],
+    "white_mono": ["font", "smalfont"],
+    "icn_frames": {
+      "swapbtn": [2], "locators": [20], "catapult": [15, 16],
+      "buttons": [22, 23], "overlay": [0, 1], "terrains": [7]
+    },
+    "std_shadow_start": {"default": 9, "extended": 15},
+    "atk_first_mono": 10,
+    "wlk_first_mono": 6
+  },
+
+  "std": {
+    "extended": ["dragon", "cyclops", "phoenix"],
+    "independent": ["hydra"],
+    "overlay_sets": {
+      "standard": [[5, 6, 7, 8, "atk"]],
+      "extended": [[5, 6, 7, 8, "atk0"], [5, 9, 10, 11, "atk1"], [5, 12, 13, 14, "atk2"]]
+    },
+    "shadow_names": {
+      "standard": {
+        "10": "shadow_gnd_standing", "11": "shadow_gnd_death",
+        "12": "shadow_gnd_atk1", "13": "shadow_gnd_atk2",
+        "15": "shadow_gnd_atk_up", "16": "shadow_gnd_atk_across",
+        "17": "shadow_gnd_atk_down"
+      },
+      "extended": {
+        "16": "shadow_gnd_standing", "17": "shadow_gnd_death",
+        "18": "shadow_gnd_atk1", "19": "shadow_gnd_atk2",
+        "21": "shadow_gnd_atk0_up", "22": "shadow_gnd_atk0_across",
+        "23": "shadow_gnd_atk0_down",
+        "24": "shadow_gnd_atk1_up", "25": "shadow_gnd_atk1_across",
+        "26": "shadow_gnd_atk1_down",
+        "27": "shadow_gnd_atk2_up", "28": "shadow_gnd_atk2_across",
+        "29": "shadow_gnd_atk2_down"
+      }
+    },
+    "naming_caveat": "Hydra has no sentinel at frame 9, so its shadow run starts a pose earlier than every other creature and the standard name table lands one frame off: shadow_gnd_standing.png is the death shadow, and the real standing shadow ships as shadow_gnd_F9.png. The names stay because data/creatures/anim_table.json references them; tests/test_creature_shadow_pairing.gd pins what each one actually shadows."
+  },
+
+  "atlases": {
+    "objects": {
+      "output": "objects_atlas",
+      "dirs": [
+        "mtn32", "obj32-00", "obj32-01", "obj32-02", "obj32-03",
+        "obj32-04", "obj32-05", "obj32-06", "obj32-07", "rsrc32",
+        "town32", "tree32"
+      ],
+      "width": 1024,
+      "height": 2048,
+      "cell_size": 34,
+      "padding": 1
+    },
+    "mons32": {
+      "output": "mons32_atlas",
+      "dirs": ["mons32"],
+      "width": 256,
+      "height": 256,
+      "cell_size": 34,
+      "padding": 1
+    },
+    "minimon": {
+      "output": "minimon_atlas",
+      "dirs": ["minimon"],
+      "width": 512,
+      "height": 512,
+      "cell_size": 0,
+      "padding": 1
+    },
+    "flag32": {
+      "output": "flag32_atlas",
+      "dirs": ["flag32"],
+      "width": 256,
+      "height": 256,
+      "cell_size": 34,
+      "padding": 1
+    },
+    "art32": {
+      "output": "art32_atlas",
+      "dirs": ["art32"],
+      "width": 256,
+      "height": 256,
+      "cell_size": 34,
+      "padding": 1
+    },
+    "heroes": {
+      "output": "heroes_atlas",
+      "dirs": [
+        "kngt32", "barb32", "sorc32", "wrlk32", "boat32",
+        "b-flag32", "g-flag32", "r-flag32", "y-flag32",
+        "b-bflg32", "g-bflg32", "r-bflg32", "y-bflg32"
+      ],
+      "width": 1024,
+      "height": 1024,
+      "cell_size": 0,
+      "padding": 1
+    },
+    "route": {
+      "output": "route_atlas",
+      "dirs": ["route"],
+      "width": 256,
+      "height": 256,
+      "cell_size": 34,
+      "padding": 1
+    },
+    "clop32": {
+      "output": "clop32_atlas",
+      "dirs": ["clop32"],
+      "width": 256,
+      "height": 256,
+      "cell_size": 34,
+      "padding": 1
+    }
+  },
+
+  "palette": {
+    "cycle": {
+      "ground32": {"tiles": 20, "frames": 5, "start": 240, "length": 5}
+    },
+    "cycle_evidence": "The water band is indices 240 to 244. Across ground32's twenty water tiles those five indices cover 7851 pixels and the README's 231 to 237 band covers zero."
+  },
+
+  "sound": {"rate": 22050},
+
+  "expect": {
+    "totals": {"entries": 679, "frames": 5535, "images": 5855, "sounds": 169, "raw": 121, "specs": 334},
+    "releases": {
+      "win95": {
+        "totals": {"entries": 875, "frames": 6774, "images": 7373, "sounds": 169, "raw": 140, "specs": 358},
+        "families": {
+          "wlk": {"dirs": 28, "frames": 12},
+          "wip": {"dirs": 21, "frames": 6},
+          "xtl": {"dirs": 8, "frames": 11},
+          "obj": {"dirs": 7, "frames": 3},
+          "atk": {"dirs": 6, "frames": 14, "composites": 4},
+          "std": {"dirs": 28},
+          "til": {"dirs": 6}
+        }
+      }
+    },
+    "extensions": {
+      "icn": 236, "82m": 169, "bin": 75, "bmp": 40, "tod": 38, "std": 28,
+      "wlk": 28, "wip": 21, "bkg": 11, "xtl": 8, "obj": 7, "atk": 6,
+      "til": 4, "mse": 3, "fnt": 2, "pal": 2, "map": 1
+    },
+    "families": {
+      "wlk": {"dirs": 28, "frames": 12},
+      "wip": {"dirs": 21, "frames": 6},
+      "xtl": {"dirs": 8, "frames": 11,
+        "geometry": ["66x99", "27x87", "67x99", "28x87", "78x99", "78x99",
+                     "78x99", "78x99", "78x99", "78x99", "78x99"]},
+      "obj": {"dirs": 7, "frames": 3},
+      "atk": {"dirs": 6, "frames": 14, "composites": 4},
+      "std": {"dirs": 28},
+      "til": {"dirs": 4}
+    },
+    "std_variants": {
+      "standard": {"dirs": 24, "frames": 18, "composites": 3},
+      "extended": {"dirs": 3, "frames": 33, "composites": 9},
+      "independent": {"dirs": 1, "frames": 16, "composites": 0}
+    },
+    "til_geometry": {
+      "ground32": {"tiles": 124, "sizes": {"160x32": 20, "32x32": 104}},
+      "clof32": {"tiles": 4, "sizes": {"32x32": 4}},
+      "ston": {"tiles": 36, "sizes": {"32x32": 36}},
+      "herologo": {"tiles": 1, "sizes": {"144x144": 1}}
+    },
+    "icn_frames": {"font": 96, "smalfont": 96, "radar": 2, "shadow32": 56,
+                   "swapbtn": 3, "locators": 22, "catapult": 17},
+    "opaque_canary": {
+      "reason": "The four creatures whose frame 5 is an anchor speck rather than a body, which the README states as a small bounding box and which is really a pixel count: wolf declares 4x11 but ghost declares 60x109 and is 91 percent of its frame 1 by area. Measured coverage is 2, 15, 30 and 63 opaque pixels against 1054 for the nearest non-member, so the threshold is not delicate. It is a canary for a decoder that has gone wrong in a way no size or count check would catch.",
+      "frame": 5,
+      "max_opaque": 100,
+      "dirs": ["wolf.std", "gargoyle.std", "griffin.std", "ghost.std"]
+    },
+    "expected_duplicates": {
+      "reason": "Frames the archive stores more than once. Declared so the checker treats them as the archive's shape rather than a decoder fault. About 135 files, all named in data/creatures/anim_table.json.",
+      "groups": {
+        "cyclops.std": [[15, 16, 20], [21, 24, 27, 30], [22, 25, 28, 31], [23, 26, 29, 32]],
+        "phoenix.std": [[15, 16, 20], [21, 24, 27, 30], [22, 25, 28, 31], [23, 26, 29, 32]],
+        "dragon.std": [[21, 24, 27, 30], [22, 25, 28, 31], [23, 26, 29, 32]]
+      }
+    }
+  }
+}

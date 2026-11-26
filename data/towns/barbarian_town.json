@@ -1,0 +1,18 @@
+{
+  "name": "Zanzobar",
+  "background": "townbkg2.png",
+  "crest_class": 1,
+  "castle_dir": "plnscast",
+  "tent_dir": "plnstent",
+  "layout": [
+    { "dir": "plns_e0" },
+    { "dir": "plnscast" },
+    { "dir": "plns_d4", "unit": "troll" },
+    { "dir": "plns_d3", "unit": "ogre" },
+    { "dir": "plns_d2", "unit": "wolf" },
+    { "dir": "plns_d5", "unit": "cyclops" },
+    { "dir": "plns_d1", "unit": "orc" },
+    { "dir": "plns_d0", "unit": "goblin" },
+    { "dir": "plnstent" }
+  ]
+}

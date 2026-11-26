@@ -1,0 +1,347 @@
+{
+  "_source": "heroes.exe 0x71938, the computer's tile value function, and 0x6e950, its battle estimate (decoded 2026-10-03, data/knowledge_base/research/ai-planner-decodes.md). Values are in gold equivalents: a resource times its worth (data/ai/buy_choice.json resource_worth), an army rating times the player's army value f9.",
+
+  "_mode0_cap": "0x733a9: the potential's tile values (mode 0) are kept within +-mode0_cap before they are cached; the planner's modes 1 and 2 are not.",
+  "mode0_cap": 32000,
+
+  "hero_weight": {
+    "_comment": "Hero float +0xb2, set each AI turn: plain army rating x per_rating + base. Scales stat boosters and the battle experience term.",
+    "base": 0.4,
+    "per_rating": 0.00004
+  },
+
+  "supported_dwellings": ["goblin"],
+  "_supported_dwellings": "The support factor (data/ai/planner.json support) scales every tile case but an own town, a stack worth less than nothing, and the paid dwellings, which clear data 0x32088; of those only the goblins' Straw Hut (0x72cbc) keeps it.",
+
+  "chest_gold": 1500,
+  "boat": 100,
+  "_boat": "Cell class 190 (0x73242): a free boat is worth a flat 100. Shipyard purchases write the class into the cell (0x7748c).",
+  "campfire": {"resources": 5, "gold": 500},
+  "skeleton_share": 0.1,
+  "lighthouse": 1000,
+  "boosters": {
+    "_comment": "hero weight x value; 0 once this hero has visited.",
+    "gazebo": 1000,
+    "statue": 400,
+    "fountain": 200,
+    "buoy": 200,
+    "faerie_ring": 200,
+    "oasis": 200
+  },
+  "windmill_amount": 2,
+  "watermill_gold": 500,
+  "demon_cave": {"hero_weight": 700, "gold": 1750},
+
+  "artifact": {
+    "_comment": "Free: the artifact's value A (buy_choice.json artifact_values). Guarded: trunc(A x P + battle value) against guard_count stacks of guard_unit. Paid: max(0, trunc(A - price x gold worth)). Unknown encounter: free_share A + guarded_share G + paid_share P.",
+    "guard_unit": "rogue",
+    "guard_stacks": 5,
+    "guard_count": 10,
+    "price": 2000,
+    "free_share": 0.6,
+    "guarded_share": 0.2,
+    "paid_share": 0.2
+  },
+
+  "mine": {
+    "_comment": "Daily yield x worth x the tile's income days, x the owner multiplier of the computer's level (owner_multiplier) when another player holds it. Income days start at days and drop near other players' heroes: within box tiles of one, min(days, |manhattan - offset| / divisor).",
+    "days": 7,
+    "box": 10,
+    "offset": 4,
+    "divisor": 4
+  },
+
+  "dragon_city": {"gold": 1000, "factor": 1.5},
+
+  "_comment_guarded_sites": "Graveyard and shipwreck (0x72df5): per band, trunc(reward x P + battle value) against the band's guard, reward = gold x gold worth + the average artifact value when an artifact comes with it. The bands are the catalog's own outcomes (the original's table: 1000, 2000, 5000 and 2000 + artifact gold against 5 stacks of 2, 3, 5 and 10 ghosts); an unrolled site counts the bands by weight.",
+
+  "obelisk": {
+    "_comment": "trunc(trunc(ultimate artifact value / divisor x pieces / obelisks) x (base - |center - revealed pieces| / pieces)) x (b5 + b5_offset); 0 once visited.",
+    "divisor": 110,
+    "pieces": 48,
+    "center": 32,
+    "base": 1.5,
+    "b5_offset": 0.66
+  },
+
+  "town": {
+    "_comment": "Worth of a town not the player's own: sum of its building values (buy_choice.json buildings) + gold worth x gold + extra; when a player owns it, x owner multiplier x (owned_base + owned_per_missing x (players_max - players)). Value = trunc(worth x P + battle value).",
+    "gold": 1875,
+    "extra": 750,
+    "owned_base": 0.9,
+    "owned_per_missing": 0.25,
+    "players_max": 5
+  },
+
+  "home": {
+    "_comment": "A trip to an own castle, the rebalance routine's evaluate mode (0x746d8): ((1 + gap + offset)^2 - 1) x f9 x (hero + garrison rating) x weaker (hero weaker than the garrison) or stronger.",
+    "offset": -0.22,
+    "weaker": 0.25,
+    "stronger": 0.13
+  },
+
+  "battle": {
+    "_comment": "0x6e950. Am, Dm = plain ratings (the original's count brackets and hero skill terms, 0x73d34, are not ported). Siege: Dm x siege. Neutral defender: Am x (neutral_base + neutral_per_level x AI level). Human defender: Dm x human_defender. P = Am^e / (Am^e + Dm^e) with the pessimism rows in adventure_ai.json battle_estimate. Value = -own loss x (loss_base - b1)^2, + enemy loss x owner multiplier x (b1 + gain_offset)^2 for a player defender, x f9; an attacking hero adds -(artifacts + attacker_risk) x (1 - P) + xp_share x XP x P x hero weight, XP = defenders' hit points + hero_xp for a defending hero; a defending hero adds (artifacts + defender_prize) x owner multiplier x P.",
+    "siege": 1.11,
+    "human_defender": 1.14,
+    "gain_offset": 0.66,
+    "attacker_risk": 1400,
+    "defender_prize": 1250,
+    "xp_share": 0.8,
+    "hero_xp": 500,
+    "dumb_attacker": 1.5
+  },
+
+  "rating": {
+      "_comment": "0x73d34, the computer's army rating. Each stack: count x rating x (1 + bracket), the bracket by count (the first row whose 'above' the count exceeds); shooters, sprites and rogues get x shooter of the bracket, griffins x griffin. With a hero: x skill[attack + defense + 20] (0..40), x (morale + 48) / 48 above 0 or (morale + 24) / 24 below, x (luck + 16) / 16; combat spells add value x power factor x charges[charges] each, capped at cap_share x the best one, then against the army A: above twice A -> high x A, above 1.5 A -> A, above A -> low x A. A siege tower adds tower_per_k x (5 + 4 dwellings + other buildings), x skill, then above twice A -> 1.5 A, above 1.5 A -> 1.25 A, above A -> 0.9 A.",
+      "brackets": [
+          {
+              "above": 180,
+              "bonus": 1.7
+          },
+          {
+              "above": 140,
+              "bonus": 1.3
+          },
+          {
+              "above": 100,
+              "bonus": 1.1
+          },
+          {
+              "above": 75,
+              "bonus": 0.95
+          },
+          {
+              "above": 50,
+              "bonus": 0.81
+          },
+          {
+              "above": 35,
+              "bonus": 0.57
+          },
+          {
+              "above": 23,
+              "bonus": 0.37
+          },
+          {
+              "above": 16,
+              "bonus": 0.25
+          },
+          {
+              "above": 11,
+              "bonus": 0.13
+          },
+          {
+              "above": 8,
+              "bonus": 0.06
+          },
+          {
+              "above": 5,
+              "bonus": 0.0
+          },
+          {
+              "above": 3,
+              "bonus": -0.05
+          },
+          {
+              "above": 2,
+              "bonus": -0.1
+          },
+          {
+              "above": -1,
+              "bonus": -0.14
+          }
+      ],
+      "shooter": 0.7,
+      "shooter_units": [
+          "sprite",
+          "rogue"
+      ],
+      "griffin": 1.2,
+      "griffin_units": [
+          "griffin"
+      ],
+      "skill": [
+          0.63,
+          0.63,
+          0.63,
+          0.63,
+          0.63,
+          0.63,
+          0.64,
+          0.65,
+          0.67,
+          0.68,
+          0.7,
+          0.72,
+          0.74,
+          0.76,
+          0.78,
+          0.81,
+          0.84,
+          0.87,
+          0.91,
+          0.95,
+          1.0,
+          1.05,
+          1.1,
+          1.15,
+          1.22,
+          1.28,
+          1.36,
+          1.44,
+          1.53,
+          1.63,
+          1.74,
+          1.86,
+          1.99,
+          2.14,
+          2.3,
+          2.48,
+          2.67,
+          2.86,
+          2.86,
+          2.86,
+          2.86
+      ],
+      "morale_up": 48,
+      "morale_down": 24,
+      "luck": 16,
+      "spell_values": {
+          "fireball": 500,
+          "lightning_bolt": 350,
+          "teleport": 300,
+          "cure": 400,
+          "resurrect": 550,
+          "haste": 900,
+          "slow": 400,
+          "blind": 500,
+          "bless": 300,
+          "shield": 350,
+          "curse": 250,
+          "kill_undead": 0,
+          "anti_magic": 100,
+          "dispel": 150,
+          "berserk": 1000,
+          "armageddon": 2000,
+          "starfall": 700,
+          "meteor_shower": 1700,
+          "paralyze": 700
+      },
+      "power_scaled": [
+          "fireball",
+          "lightning_bolt",
+          "resurrect",
+          "armageddon",
+          "starfall",
+          "meteor_shower"
+      ],
+      "power": [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.21,
+          0.23,
+          0.25,
+          0.28,
+          0.31,
+          0.35,
+          0.39,
+          0.43,
+          0.48,
+          0.53,
+          0.59,
+          0.66,
+          0.73,
+          0.81,
+          0.9,
+          1.0,
+          1.1,
+          1.21,
+          1.33,
+          1.46,
+          1.61,
+          1.77,
+          1.95,
+          2.14,
+          2.36,
+          2.59,
+          2.85,
+          3.14,
+          3.45,
+          3.8,
+          4.18,
+          4.59,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+      ],
+      "power_above": 5.0,
+      "low_power": {
+          "1": 0.25,
+          "2": 0.5
+      },
+      "charges": [
+          0.0,
+          1.0,
+          1.7,
+          2.2,
+          2.6,
+          2.95,
+          3.27,
+          3.56,
+          3.81,
+          4.04,
+          4.25,
+          4.45,
+          4.64,
+          4.83,
+          5.01,
+          5.19,
+          5.36,
+          5.53,
+          5.68,
+          5.82,
+          5.96
+      ],
+      "cap_share": 3.5,
+      "spell_high": 1.25,
+      "spell_low": 0.75,
+      "tower_per_k": 120,
+      "tower_high": 1.5,
+      "tower_mid": 1.25,
+      "tower_low": 0.9
+  },
+
+  "owner_multiplier": {
+    "_comment": "Set each AI turn from the computer's level (player byte +0x12): level 1 human 0.6, computer 1.3; level 2 both 1.0; otherwise human 1 + human_per_level x level, computer computer_base - computer_per_level x level.",
+    "level_1": {"human": 0.6, "computer": 1.3},
+    "level_2": {"human": 1.0, "computer": 1.0},
+    "human_per_level": 0.07,
+    "computer_base": 1.1,
+    "computer_per_level": 0.12
+  },
+
+  "shrine": {
+    "_comment": "0x728d7: the spell's value (rating.spell_values; adventure spells from extra_values, data 0x1f17c) x (charges curve at knowledge - at the charges held), x rating.skill[knowledge] for power-scaled spells. Needs a spell book and knowledge above 0.",
+    "extra_values": {"dimension_door": 1200}
+  },
+
+  "hero_odds": {
+    "_comment": "Another player's hero (0x71f1e). In the planner's modes (1 and 2) a human's hero worth more than human_above counts human_factor times. In mode 0 (the potential's) below worse_below the value is x (3 - 2P), below worst_below also x (2 - 2P). A hero in his town adds the town's worth x (1 + owned_per_missing x (players_max - players) x owner multiplier) x P, without the owned-town factor (0.9 + ...).",
+    "worse_below": 0.4,
+    "worst_below": 0.2,
+    "human_above": 200,
+    "human_factor": 1.5
+  },
+
+  "monster_join": {
+    "_comment": "A stack that offers to join (cell byte 9 bit 0x80) and that the hero's rating with skills (0x73d34) beats by join_ratio: join_share x its recruit value (0 without room) + battle_share x battle value.",
+  "join_ratio": 1.75,
+    "join_share": 0.6,
+    "battle_share": 0.4
+  }
+}

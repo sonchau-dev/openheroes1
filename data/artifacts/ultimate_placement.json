@@ -1,0 +1,7 @@
+{
+  "_comment": "Where a new game buries the Ultimate Artifact when the scenario names none (heroes.exe 0x7c305..0x7c496, decoded 2026-10-04). x and y are drawn in min..max until the cell is land (ground tile 20 or above) with no sprite on either layer. With one human player the cell must also lie farther from that player's starting hero (Manhattan) than the sum of one roll of each die in distance_dice. The artifact is then drawn from artifacts, the four ultimates in native id order 0-3.",
+  "min": 9,
+  "max": 62,
+  "distance_dice": [20, 20, 30],
+  "artifacts": ["book_of_omniscience", "sword_of_power", "protective_cape", "rod_of_magic"]
+}

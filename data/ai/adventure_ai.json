@@ -1,0 +1,63 @@
+{
+  "_source": "Computer-player rules not covered by the decoded tables: target values are heroes.exe's own (data/ai/tile_values.json, AITileValue) and buying is AIBuyer's (data/ai/buy_choice.json). This file keeps the day-1 treasury, the townless rule, the castle rebalance and the battle estimate.",
+  "starting_resources": {
+    "_comment": "What every computer player owns on day 1, read from DOS saves of two independent new games (the Claw base save behind the ARENA*.GM1 files and GAME1.GM1 on another map), player block offset 125 (homm1-native-data.md 4.6). Both were made at the default opponent level; other levels are untested. The human in the same saves holds the Normal tuple from basic-concepts.md.",
+    "gold": 10000,
+    "wood": 30,
+    "mercury": 10,
+    "ore": 30,
+    "sulfur": 10,
+    "crystal": 10,
+    "gems": 10
+  },
+  "battle_estimate": {
+    "_source": "heroes.exe 0x6e950, the computer's battle estimate (data/knowledge_base/research/ai-planner-decodes.md, 'Battle estimate'); constants from the data object at 0xa46..0xab2.",
+    "_comment": "Against a neutral stack: Am = attacker rating x (neutral_base + neutral_per_level x AI level), Dm = defender rating, both at least 1. P = Am^e / (Am^e + Dm^e), e = exponent (exponent_large when either exceeds large). The first pessimism row whose 'below' exceeds P sets or shifts it. Expected own loss = trunc(A0 (1 - P) + trunc((1 - P) A0) P); the battle value is -loss x (loss_base - b1)^2 x f9. Ratings are plain count x rating: the original's count brackets and hero skill terms (0x73d34) are not ported. A computer route may pass one neutral stack (0x86b64 planning mode) and pays this cost for what lies beyond.",
+    "neutral_base": 0.7,
+    "neutral_per_level": 0.15,
+    "exponent": 2.75,
+    "exponent_large": 2.0,
+    "large": 1000000,
+    "pessimism": [
+      {"below": 0.08, "set": 0.0},
+      {"below": 0.12, "add": -0.07},
+      {"below": 0.2, "add": -0.05},
+      {"below": 0.3, "add": -0.04},
+      {"below": 0.4, "add": -0.02}
+    ],
+    "loss_base": 1.33
+  },
+  "quick_battle": {
+    "_source": "heroes.exe 0x74424 (fight), 0xbe4bb (losses); constants at data 0xd9e..0xdd2 and 0x2d8c..0x2d90.",
+    "_comment": "Every fight a computer hero has with neutrals, a computer hero or a town no human holds is settled here, with no battle screen. P = the battle estimate's win chance; r = random(0..100) x draw_scale; the attacker wins when r < P. w = P for an attacker win, 1 - P otherwise; m = |r - P|, x (P + strong_bonus) when the attacker wins with P above strong_above. The winner loses loss = (m - 1)^2, squared again when w > sure_above and loss > sure_loss_above, at most (1 - w) x cap_share when w > cap_above. The loser loses everything, but a winning defender's own loss is loss x m. Each creature then dies when random(0..100) < trunc(fraction x 100), the first occupied stack keeps one unless fraction >= keep_one_below, and a side whose fraction reaches dead_at loses its hero.",
+    "draw_scale": 0.01,
+    "strong_above": 0.6,
+    "strong_bonus": 0.65,
+    "sure_above": 0.8,
+    "sure_loss_above": 0.2,
+    "cap_above": 0.96,
+    "cap_share": 0.5,
+    "dead_at": 0.99,
+    "keep_one_below": 0.999
+  },
+  "townless": {
+    "_comment": "bugs.md 25.2 item 1 (handbookhmm.ru/1-bugs), the Russian 1.1 behaviour; this heroes.exe is not English 1.0 (homm1-native-data.md 4.6). A computer player with no castle attacks the nearest castle whatever its army's strength, unless a noticeably weaker castle lies no more than two days away, and collects ownerless resources along the way. Ours: the weakest castle within castle_reach_days wins, the nearest breaks ties and is the target when none is that close; 'along the way' is a resource pile within detour_tiles steps; a day is 15 tiles, the scale AIController's distance discount already uses.",
+    "castle_reach_days": 2,
+    "detour_tiles": 2
+  },
+  "castle_swap": {
+    "_source": "heroes.exe 0x746d8 (file offset), the computer's own-castle routine, read 2026-10-03; constants from the data object (file 0x1046a4 + 0xdda..0xe2a). The town-arrival handler 0x759c4 calls it once the castle is the hero's player's, so a capture runs it too. Checked against a DOS day-1/day-2 save pair (homm1-native-data.md 4.6): it reproduces all three heroes exactly.",
+    "_comment": "Strength is count x the native rating (data/creatures/join_power.json). The garrison's share of hero + garrison strength is steered toward base - per_skill * min(attack + defense, skill_cap): castle_* in a town with a castle, town_* otherwise. Nothing moves while the share is within tolerance x target. When the garrison holds too much, the hero takes and take_bonus is added to the gap. The strength to move is trunc(total x gap). Stacks go one at a time: first a stack whose creature is already on the other side, else the slowest (when leaving) or fastest (when taking), the stronger on a tie. A stack moves n = trunc(left / rating + round_bias) creatures, all of it when n reaches whole_stack_share of the stack (or all but one) and the remnant would be worth less than remnant_factor x (source strength - left). A leaving hero always keeps one creature. The loop stops after a stack worth more than left / overshoot.",
+    "castle_base": 0.54,
+    "castle_per_skill": 0.02,
+    "town_base": 0.33,
+    "town_per_skill": 0.01,
+    "skill_cap": 10,
+    "tolerance": 0.15,
+    "take_bonus": 0.04,
+    "round_bias": 0.5,
+    "whole_stack_share": 0.65,
+    "remnant_factor": 0.2,
+    "overshoot": 1.2
+  }
+}

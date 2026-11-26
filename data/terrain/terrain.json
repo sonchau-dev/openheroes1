@@ -1,0 +1,10 @@
+{
+  "_comment": "HOMM1 terrain table. base = first plain-variant ground32 tile index (4 plain variants at base..base+3; 16 transitions at base+4..base+19, dirt has plains only). move_cost = straight-step cost, mirrors Hero.step_cost (hero.gd) which remains authoritative until a later stage wires it here.",
+  "W": { "name": "water",  "base": 0,   "passable": false, "move_cost": 4 },
+  "G": { "name": "grass",  "base": 20,  "passable": true,  "move_cost": 4 },
+  "S": { "name": "snow",   "base": 40,  "passable": true,  "move_cost": 6 },
+  "T": { "name": "swamp",  "base": 60,  "passable": true,  "move_cost": 6 },
+  "L": { "name": "lava",   "base": 80,  "passable": true,  "move_cost": 4 },
+  "D": { "name": "desert", "base": 100, "passable": true,  "move_cost": 8 },
+  "I": { "name": "dirt",   "base": 120, "passable": true,  "move_cost": 4 }
+}

@@ -1,0 +1,8 @@
+{
+  "centaur":  { "cost": 60,   "growth": 8 },
+  "gargoyle": { "cost": 200,  "growth": 6 },
+  "griffin":  { "cost": 300,  "growth": 4 },
+  "minotaur": { "cost": 400,  "growth": 3 },
+  "hydra":    { "cost": 800,  "growth": 2 },
+  "dragon":   { "cost": 3000, "growth": 1, "resource": "sulfur", "resource_cost": 1 }
+}
